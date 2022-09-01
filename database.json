@@ -1,0 +1,18 @@
+{
+  "homePageMovies": [
+    {
+      "id": 1,
+      "title": "Thor: Love and Thunder",
+      "description": "typicode",
+      "img": "http://www.theshiznit.co.uk/media/2012/May/truthful/avengers-large.jpg",
+      "trailer": "https://www.youtube.com/watch?v=BfsNfFoA0J0"
+    },
+    {
+      "id": 2,
+      "title": "Thor: Love and Thunder",
+      "description": "Thor embarks on a journey unlike anything he's ever faced -- a quest for inner peace. However, his retirement gets interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods.",
+      "img": "https://www.cnet.com/a/img/resize/516e19ff2aa08ac87355ebd1e61bef49d48d1ea1/2022/04/18/0b0e2a0d-be40-4a69-919d-52696206039b/thor4-teaser-printed-1-sht-v4-lg.jpg?auto=webp&fit=crop&height=675&precrop=1688,964,x0,y286&width=1200",
+      "trailer": "https://www.youtube.com/watch?v=BfsNfFoA0J0"
+    }
+  ]
+}
