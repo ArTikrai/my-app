@@ -14,15 +14,13 @@ const HomeSwiper = ({ homeMovies }) => (
       modules={[Navigation, Autoplay]}
       navigation
       autoplay={{
-        delay: 3500,
+        delay: 7000,
         disableOnInteraction: false,
       }}
       style={{
-        height: '100%',
+        height: '100vh',
         position: 'absolute',
-        left: 0,
         width: '100%',
-        overflow: 'hidden',
       }}
     >
       {homeMovies.map(({
