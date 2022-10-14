@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import MainLayout from 'layouts/main-layout';
-import HomePage from 'pages/home-page';
+import HomePage from '../pages/home-page';
 import MoviesPage from '../pages/movies-page';
 
 const PageRoutes = () => (

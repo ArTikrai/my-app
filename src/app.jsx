@@ -1,11 +1,10 @@
 import * as React from 'react';
-import HomePage from 'pages/home-page';
-import { Navbar } from './components';
+import { BrowserRouter } from 'react-router-dom';
+import PageRoutes from 'routes/page-routes';
 
 const App = () => (
-  <>
-    <Navbar />
-    <HomePage />
-  </>
+  <BrowserRouter>
+    <PageRoutes />
+  </BrowserRouter>
 );
 export default App;
