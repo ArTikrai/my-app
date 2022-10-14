@@ -14,7 +14,7 @@ import
 
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
-import { NavLink } from 'react-router-dom';
+import * as Nav from './index';
 
 const NavbarDrawer = () => {
   const [state, setState] = React.useState({
@@ -39,24 +39,24 @@ const NavbarDrawer = () => {
       <Divider sx={{ mt: '50px' }}>Menu</Divider>
       <List>
         <ListItem disablePadding>
-          <NavLink to="/">
+          <Nav.Link to="/">
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
-          </NavLink>
+          </Nav.Link>
         </ListItem>
         <ListItem disablePadding>
-          <NavLink to="movies">
+          <Nav.Link to="movies">
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Movies" />
             </ListItemButton>
-          </NavLink>
+          </Nav.Link>
         </ListItem>
       </List>
       <Divider>Library</Divider>

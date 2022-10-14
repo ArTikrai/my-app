@@ -1,6 +1,6 @@
 import * as React from 'react';
 import HomeService from 'services/home-service';
-import HomeSwiper from './components/swiper';
+import HomeSwiper from './components/home-swiper';
 
 const HomePage = () => {
   const [homeMovies, setHomeMovies] = React.useState([]);
