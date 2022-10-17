@@ -19,9 +19,8 @@ const SwiperMovie = ({
 }) => (
   <Swiper
     style={{
-      marginTop: 70,
       height: '100%',
-      paddingBottom: 5,
+      paddingBottom: 10,
       paddingInline: 10,
     }}
     modules={[Navigation, EffectFade]}

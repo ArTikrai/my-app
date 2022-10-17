@@ -1,6 +1,7 @@
 import * as React from 'react';
 import MovieService from 'services/movie-service';
 import { SwiperMovie } from 'components';
+import CategoryTitle from './components/category-title';
 
 const MoviesPage = () => {
   const [movies, setMovies] = React.useState([]);
@@ -18,8 +19,11 @@ const MoviesPage = () => {
 
   return (
     <>
+      <CategoryTitle style={{ marginTop: 150 }} categoryTitle="Fantasy" />
       <SwiperMovie filteredMovies={fantasyMovies} />
+      <CategoryTitle categoryTitle="Action" />
       <SwiperMovie filteredMovies={actionMovies} />
+      <CategoryTitle categoryTitle="Comedy" />
       <SwiperMovie filteredMovies={comedyMovies} />
     </>
   );
