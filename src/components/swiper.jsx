@@ -13,7 +13,7 @@ import 'swiper/css/effect-fade';
 import MovieCard from 'pages/movies-page/components/movie-card';
 
 const SwiperMovie = ({
-  movies,
+  filteredMovies,
   removeMovieCard,
   editMovieCard,
 }) => (
@@ -34,12 +34,12 @@ const SwiperMovie = ({
     pagination={{ clickable: true }}
     scrollbar={{ draggable: true }}
   >
-    {movies.map(({
+    {filteredMovies.map(({
       id,
       title,
       img,
-      description,
       category,
+      description,
       price,
     }) => (
       <SwiperSlide key={id} style={{ height: '100%', minHeight: '550px' }}>

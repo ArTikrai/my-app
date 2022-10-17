@@ -5,6 +5,8 @@ import { SwiperMovie } from 'components';
 const MoviesPage = () => {
   const [movies, setMovies] = React.useState([]);
 
+  console.log(movies);
+
   const handleFetchedMovies = async () => {
     const fetchedMovies = await MovieService.fetchAll();
     setMovies(fetchedMovies);
@@ -12,8 +14,17 @@ const MoviesPage = () => {
 
   React.useEffect(() => { handleFetchedMovies(); }, []);
 
+  const fantasyMovies = movies.filter((arr) => arr.category === 'Fantasy');
+  const actionMovies = movies.filter((arr) => arr.category === 'Action');
+  const comedyMovies = movies.filter((arr) => arr.category === 'Comedy');
+  console.log(fantasyMovies);
+
   return (
-    <SwiperMovie movies={movies} />
+    <>
+      <SwiperMovie filteredMovies={fantasyMovies} />
+      <SwiperMovie filteredMovies={actionMovies} />
+      <SwiperMovie filteredMovies={comedyMovies} />
+    </>
   );
 };
 
