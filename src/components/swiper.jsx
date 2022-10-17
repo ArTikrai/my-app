@@ -18,7 +18,12 @@ const SwiperMovie = ({
   editMovieCard,
 }) => (
   <Swiper
-    style={{ marginTop: 50, height: '100%' }}
+    style={{
+      marginTop: 70,
+      height: '100%',
+      paddingBottom: 5,
+      paddingInline: 10,
+    }}
     modules={[Navigation, EffectFade]}
     breakpoints={{
       500: { slidesPerView: 1 },
@@ -42,7 +47,7 @@ const SwiperMovie = ({
       description,
       price,
     }) => (
-      <SwiperSlide key={id} style={{ height: '100%', minHeight: '550px' }}>
+      <SwiperSlide key={id} style={{ height: 'auto' }}>
         <MovieCard
           key={id}
           title={title}
