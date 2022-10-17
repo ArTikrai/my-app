@@ -18,7 +18,10 @@ const FooterBox = () => {
         textAlign: 'center',
         flexDirection: 'column',
         width: '100%',
-        py: '50px',
+        height: '100%',
+        pt: '40px',
+        pb: '20px',
+        backgroundColor: 'grey',
       }}
     >
       <Box>
