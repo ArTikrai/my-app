@@ -4,7 +4,7 @@ export const Background = styled(Box)({
   position: 'absolute',
   top: 0,
   left: 0,
-  minHeight: '100vh',
+  height: '100vh',
   width: '100%',
   zIndex: 1,
   objectFit: 'cover',

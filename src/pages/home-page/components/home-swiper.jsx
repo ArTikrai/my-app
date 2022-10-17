@@ -19,7 +19,6 @@ const HomeSwiper = ({ homeMovies }) => (
       }}
       style={{
         height: '100vh',
-        position: 'absolute',
         width: '100%',
       }}
     >

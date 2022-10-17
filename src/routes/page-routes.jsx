@@ -12,6 +12,7 @@ const PageRoutes = () => (
       <Route path="movies" element={<MoviesPage />} />
     </Route>
   </Routes>
+
 );
 
 export default PageRoutes;
