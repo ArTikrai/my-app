@@ -5,6 +5,7 @@ import MainLayout from 'layouts/main-layout';
 import WatchlistPage from 'pages/whatchlist-page';
 import LoginPage from 'pages/login-page';
 import AuthLayout from 'layouts/auth-layout';
+import RegisterPage from 'pages/register-page';
 import HomePage from '../pages/home-page';
 import MoviesPage from '../pages/movies-page';
 
@@ -17,7 +18,7 @@ const PageRoutes = () => (
 
       <Route element={<AuthLayout />}>
         <Route path="login" element={<LoginPage />} />
-        {/* <Route path="register" element={<RegisterPage />} /> */}
+        <Route path="register" element={<RegisterPage />} />
       </Route>
     </Route>
   </Routes>
