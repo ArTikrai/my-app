@@ -17,6 +17,8 @@ const Navbar = () => (
           MovieBox
         </Typography>
         <Button color="inherit">Login</Button>
+        <Box>/</Box>
+        <Button sx={{ fontSize: '15px' }} color="inherit">Register</Button>
       </Toolbar>
     </AppBar>
   </Box>

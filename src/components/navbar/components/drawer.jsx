@@ -14,6 +14,8 @@ import
 
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
+import TheatersIcon from '@mui/icons-material/Theaters';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import * as Nav from './index';
 
 const NavbarDrawer = () => {
@@ -38,39 +40,39 @@ const NavbarDrawer = () => {
     >
       <Divider sx={{ mt: '50px' }}>Menu</Divider>
       <List>
-        <ListItem disablePadding>
-          <Nav.Link to="/">
+        <Nav.Link to="/">
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
-          </Nav.Link>
-        </ListItem>
-        <ListItem disablePadding>
-          <Nav.Link to="movies">
+          </ListItem>
+        </Nav.Link>
+        <Nav.Link to="movies">
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <HomeIcon />
+                <TheatersIcon />
               </ListItemIcon>
               <ListItemText primary="Movies" />
             </ListItemButton>
-          </Nav.Link>
-        </ListItem>
+          </ListItem>
+        </Nav.Link>
       </List>
       <Divider>Library</Divider>
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text) => (
-          <ListItem key={text} disablePadding>
+        <Nav.Link to="watchlist">
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <HomeIcon />
+                <FavoriteIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary="Watchlist" />
             </ListItemButton>
           </ListItem>
-        ))}
+        </Nav.Link>
       </List>
     </Box>
   );
