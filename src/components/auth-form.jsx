@@ -5,11 +5,11 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import SecurityIcon from '@mui/icons-material/Security';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import LoginIcon from '@mui/icons-material/Login';
 
 const AuthForm = ({
   title,
-  btnText,
   disabled = false,
   onSubmit,
   children,
@@ -32,16 +32,17 @@ const AuthForm = ({
       }}
       onSubmit={onSubmit}
     >
-      <SecurityIcon sx={{ fontSize: 50, color: 'primary.main' }} />
+      <HowToRegIcon sx={{ fontSize: 100, color: 'primary.main' }} />
       <Typography component="h1" variant="h4">{title}</Typography>
       {children}
       <Button
+        style={{ minWidth: '150px' }}
         type="submit"
         variant="contained"
         size="large"
         disabled={disabled}
       >
-        {btnText}
+        <LoginIcon sx={{ fontSize: 35 }} />
       </Button>
     </Box>
   </Paper>

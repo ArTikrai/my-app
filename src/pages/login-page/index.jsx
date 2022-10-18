@@ -5,19 +5,18 @@ import AuthForm from 'components/auth-form';
 const LoginPage = () => (
   <AuthForm
     sx={{ mt: '100px' }}
-    title="Prisijungimas"
-    btnText="Prisijungti"
+    title="Login"
   >
     <TextField
       name="email"
-      label="El. paštas"
+      label="Email"
       type="email"
       variant="filled"
       fullWidth
     />
     <TextField
       name="password"
-      label="Slaptažodis"
+      label="Password"
       type="password"
       variant="filled"
       fullWidth
