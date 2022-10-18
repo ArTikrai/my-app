@@ -6,7 +6,7 @@ import Footer from 'components/footer';
 
 const MainLayout = () => (
   <Box>
-    <Box>
+    <Box sx={(theme) => ({ paddingTop: theme.mixins.navbar.height })}>
       <Navbar />
       <Outlet />
     </Box>

@@ -17,12 +17,12 @@ const baseTheme = createTheme({
   },
 
   zIndex: {
-    appBar: 1300,
+    appBar: 300,
   },
 
   transitions: {
     duration: {
-      loadingScreen: 800,
+      loadingScreen: 200,
     },
   },
 });
@@ -46,7 +46,7 @@ const lightTheme = createTheme(mixinTheme, {
       default: '#fafafa',
     },
     primary: {
-      ...createColor('#dda32f'),
+      ...createColor('#720a24'),
       contrastText: baseTheme.palette.common.white,
     },
     secondary: createColor('#434343'),
