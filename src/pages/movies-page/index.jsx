@@ -1,21 +1,23 @@
 import * as React from 'react';
 import MovieService from 'services/movie-service';
+import { useSearchParams } from 'react-router-dom';
 import { SwiperMovie } from 'components';
 import CategoryTitle from './components/category-title';
 
 const MoviesPage = () => {
   const [movies, setMovies] = React.useState([]);
+  const [searchParams] = useSearchParams();
 
-  const handleFetchedMovies = async () => {
-    const fetchedMovies = await MovieService.fetchAll();
+  const handleFetchedMovies = React.useCallback(async () => {
+    const [fetchedMovies] = await Promise.all([MovieService.fetchAll(searchParams.toString())]);
     setMovies(fetchedMovies);
-  };
+  }, [searchParams]);
 
-  React.useEffect(() => { handleFetchedMovies(); }, []);
+  React.useEffect(() => { handleFetchedMovies(); }, [handleFetchedMovies]);
 
-  const fantasyMovies = movies.filter((arr) => arr.category === 'Fantasy');
-  const actionMovies = movies.filter((arr) => arr.category === 'Action');
-  const comedyMovies = movies.filter((arr) => arr.category === 'Comedy');
+  const fantasyMovies = movies.filter((arr) => arr.category.title === 'Fantasy');
+  const actionMovies = movies.filter((arr) => arr.category.title === 'Action');
+  const comedyMovies = movies.filter((arr) => arr.category.title === 'Comedy');
 
   return (
     <>

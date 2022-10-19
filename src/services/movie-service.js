@@ -1,30 +1,32 @@
 const domain = process.env.REACT_APP_SERVER_ADDRESS;
-const collectionName = 'movies';
-const expandCategories = '?_expand=category';
+const collectionName = 'api/movies';
+const relationsParams = 'joinBy=categoryId';
 
-const formatMovies = ({
-  id,
-  title,
-  description,
-  price,
-  img,
-  categoryId,
-  category,
-}) => ({
-  id,
-  title,
-  description,
-  price,
-  img,
-  categoryId,
-  category: category.title,
-});
+// const formatMovies = ({
+//   id,
+//   title,
+//   description,
+//   price,
+//   img,
+//   categoryId,
+//   category,
+// }) => ({
+//   id,
+//   title,
+//   description,
+//   price,
+//   img,
+//   categoryId,
+//   category: category.title,
+// });
 
-const fetchAll = async () => {
-  const response = await fetch(`${domain}/${collectionName}${expandCategories}`);
-  const movies = await response.json();
+const fetchAll = async (paramsString = null) => {
+  const urlParamsString = paramsString ? `&${paramsString}` : '';
 
-  return movies.map(formatMovies);
+  const response = await fetch(`${domain}/${collectionName}?${relationsParams}${urlParamsString}`);
+  const items = await response.json();
+
+  return items;
 };
 
 const fetchCategories = async () => {

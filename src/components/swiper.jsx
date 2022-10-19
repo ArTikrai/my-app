@@ -52,7 +52,7 @@ const SwiperMovie = ({
           title={title}
           description={description}
           img={img}
-          category={category}
+          category={category.title}
           price={price}
           onDelete={() => removeMovieCard(id)}
           onEdit={() => editMovieCard(id)}

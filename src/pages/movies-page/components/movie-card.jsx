@@ -36,7 +36,7 @@ const MovieCard = ({
         <Typography variant="h5" component="div">{title}</Typography>
         <Typography variant="h6" component="div" color="primary.main">{`${price} €`}</Typography>
       </Box>
-      <Typography variant="subtitle" component="div" sx={{ mb: 2 }}>{category}</Typography>
+      <Typography variant="subtitle" component="div" sx={{ mb: 2 }}>{category.title}</Typography>
       <TypographyLimited variant="body2" color="text.secondary">{description}</TypographyLimited>
     </CardContent>
     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
