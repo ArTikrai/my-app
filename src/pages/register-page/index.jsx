@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TextField } from '@mui/material';
 import AuthForm from 'components/auth-form';
 import { useFormik } from 'formik';
+import UserService from 'services/user-service';
 import validationSchema from './components/reg-validation';
 
 const initialValues = {
@@ -13,14 +14,22 @@ const initialValues = {
 };
 
 const RegisterPage = () => {
+  const createUser = async (userProps) => {
+    await UserService.create(userProps);
+  };
+
   const onSubmit = (values) => {
+    createUser(values);
     console.log('įvestos reikšmės');
     console.table(values);
+
+    // eslint-disable-next-line no-use-before-define
+    resetForm();
   };
 
   const {
     values, errors, touched, dirty, isValid,
-    handleChange, handleBlur, handleSubmit,
+    handleChange, handleBlur, handleSubmit, resetForm,
   } = useFormik({
     initialValues,
     validationSchema,
@@ -71,7 +80,7 @@ const RegisterPage = () => {
       />
       <TextField
         name="fullname"
-        label="Fullname"
+        label="Full Name"
         type="text"
         variant="filled"
         fullWidth

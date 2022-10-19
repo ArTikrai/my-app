@@ -47,7 +47,6 @@ const LoginPage = () => {
         title="Login"
         onSubmit={handleSubmit}
         disabled={!dirty || !isValid}
-        btnText="Prisijungti"
       >
         <TextField
           name="email"

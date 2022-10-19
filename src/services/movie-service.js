@@ -2,24 +2,6 @@ const domain = process.env.REACT_APP_SERVER_ADDRESS;
 const collectionName = 'api/movies';
 const relationsParams = 'joinBy=categoryId';
 
-// const formatMovies = ({
-//   id,
-//   title,
-//   description,
-//   price,
-//   img,
-//   categoryId,
-//   category,
-// }) => ({
-//   id,
-//   title,
-//   description,
-//   price,
-//   img,
-//   categoryId,
-//   category: category.title,
-// });
-
 const fetchAll = async (paramsString = null) => {
   const urlParamsString = paramsString ? `&${paramsString}` : '';
 
