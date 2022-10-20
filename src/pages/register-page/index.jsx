@@ -9,7 +9,6 @@ import { authClearErrorsAction, createRegisterThunkAction, registerSuccess } fro
 // import { useSearchParams } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 import validationSchema from './components/reg-validation';
-import { AuthContext } from '../../store/auth/auth-context';
 
 const initialValues = {
   email: '',
@@ -21,7 +20,7 @@ const initialValues = {
 
 const RegisterPage = () => {
   const { error, dispatch } = useAuth();
-  const authState = React.useContext(AuthContext);
+  const authState = useAuth();
 
   React.useEffect(() => {
     if (authState.successRegister) {
@@ -56,6 +55,14 @@ const RegisterPage = () => {
           onClose={() => dispatch(authClearErrorsAction)}
         >
           {error}
+        </Alert>
+      )}
+      {authState.successRegister && (
+        <Alert
+          sx={{ fontSize: 20 }}
+          severity="success"
+        >
+          Registration Confirmed
         </Alert>
       )}
       <AuthForm
@@ -111,7 +118,6 @@ const RegisterPage = () => {
           error={touched.fullname && Boolean(errors.fullname)}
           helperText={touched.fullname && errors.fullname}
         />
-        {authState.successRegister && 'You have suuces'}
       </AuthForm>
     </>
   );

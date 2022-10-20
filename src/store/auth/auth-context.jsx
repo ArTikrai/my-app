@@ -17,7 +17,7 @@ const initialAuthState = {
   successRegister: false,
 };
 
-export const AuthContext = React.createContext(initialAuthState);
+const AuthContext = React.createContext(initialAuthState);
 
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducerWithThunk(authReducer, initialAuthState);
