@@ -18,6 +18,23 @@ const login = async (credetials) => {
   return authData;
 };
 
+const register = async (credetials) => {
+  const response = await fetch(`${domain}/auth/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credetials),
+  });
+  const userData = await response.json();
+
+  if (response.status >= 400) {
+    throw new Error(userData.message);
+  }
+
+  return userData;
+};
+
 const auth = async (token) => {
   const response = await fetch(`${domain}/auth/`, {
     method: 'POST',
@@ -58,6 +75,7 @@ const checkEmail = async (email) => {
 const AuthService = {
   auth,
   login,
+  register,
   checkEmail,
 };
 
