@@ -38,7 +38,7 @@ const LoginPage = () => {
   return (
     <>
       {error && (
-        <Alert severity="error" onClose={() => dispatch(authClearErrorsAction)}>
+        <Alert sx={{ fontSize: 20 }} severity="error" onClose={() => dispatch(authClearErrorsAction)}>
           {error}
         </Alert>
       )}

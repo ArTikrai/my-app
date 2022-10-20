@@ -22,6 +22,7 @@ const register = async (credetials) => {
   const response = await fetch(`${domain}/auth/register`, {
     method: 'POST',
     headers: {
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(credetials),

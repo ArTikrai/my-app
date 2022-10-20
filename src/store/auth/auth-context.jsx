@@ -9,13 +9,15 @@ const initialAuthState = {
   loggedIn: false,
   loading: false,
   user: null,
-  role: 'VISITOR',
+  role: 'USER',
   error: null,
   token: null,
   redirect: null,
+  message: null,
+  successRegister: false,
 };
 
-const AuthContext = React.createContext(initialAuthState);
+export const AuthContext = React.createContext(initialAuthState);
 
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducerWithThunk(authReducer, initialAuthState);

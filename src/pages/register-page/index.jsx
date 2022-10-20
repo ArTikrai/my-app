@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { TextField, Alert } from '@mui/material';
+import {
+  TextField,
+  Alert,
+} from '@mui/material';
 import AuthForm from 'components/auth-form';
 import { useFormik } from 'formik';
-import { authClearErrorsAction } from 'store/auth/auth-actions';
+import { authClearErrorsAction, createRegisterThunkAction, registerSuccess } from 'store/auth/auth-actions';
+// import { useSearchParams } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
-import AuthService from 'services/auth-service';
 import validationSchema from './components/reg-validation';
+import { AuthContext } from '../../store/auth/auth-context';
 
 const initialValues = {
   email: '',
@@ -17,18 +21,22 @@ const initialValues = {
 
 const RegisterPage = () => {
   const { error, dispatch } = useAuth();
-  const registerUser = async (userProps) => {
-    await AuthService.register(userProps);
-  };
+  const authState = React.useContext(AuthContext);
 
-  const onSubmit = (values) => {
-    registerUser(values);
-    console.log('įvestos reikšmės');
-    console.table(values);
+  React.useEffect(() => {
+    if (authState.successRegister) {
+      setTimeout(() => {
+        dispatch(registerSuccess(false));
+      }, 5000);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authState.successRegister]);
 
+  const onSubmitRef = React.useRef((credentials) => {
+    dispatch(createRegisterThunkAction(credentials));
     // eslint-disable-next-line no-use-before-define
     resetForm();
-  };
+  });
 
   const {
     values, errors, touched, dirty, isValid,
@@ -36,13 +44,17 @@ const RegisterPage = () => {
   } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit,
+    onSubmit: onSubmitRef.current,
   });
 
   return (
     <>
       {error && (
-        <Alert severity="error" onClose={() => dispatch(authClearErrorsAction)}>
+        <Alert
+          sx={{ fontSize: 20 }}
+          severity="error"
+          onClose={() => dispatch(authClearErrorsAction)}
+        >
           {error}
         </Alert>
       )}
@@ -99,6 +111,7 @@ const RegisterPage = () => {
           error={touched.fullname && Boolean(errors.fullname)}
           helperText={touched.fullname && errors.fullname}
         />
+        {authState.successRegister && 'You have suuces'}
       </AuthForm>
     </>
   );

@@ -7,13 +7,19 @@ import {
   AUTH_CLEAR_ERRORS,
   AUTH_INITIALIZED,
   AUTH_CLEAR_REDIRECT,
+  AUTH_CLEAR_MESSAGE,
+  RESET_REGISTER_STATE,
 } from './auth-action-types';
 
 export const authInitializedAction = { type: AUTH_INITIALIZED };
 
 export const authLoadingAction = { type: AUTH_LOADING };
 
+export const registerSuccess = (action) => ({ type: RESET_REGISTER_STATE, payload: action });
+
 export const authClearErrorsAction = { type: AUTH_CLEAR_ERRORS };
+
+export const authClearMessageAction = { type: AUTH_CLEAR_MESSAGE };
 
 export const authLogoutAction = { type: AUTH_LOGOUT };
 
@@ -40,6 +46,17 @@ export const createLoginThunkAction = (credentials, redirect) => /* return */ as
     const authSuccessAction = createAuthSuccessAction({ ...authData, redirect });
 
     dispatch(authSuccessAction);
+  } catch (err) {
+    const authFailureAction = createAuthFailureAction(err.message);
+    dispatch(authFailureAction);
+  }
+};
+export const createRegisterThunkAction = (credentials) => async (dispatch) => {
+  try {
+    dispatch(authLoadingAction);
+    await AuthService.register(credentials);
+
+    dispatch(registerSuccess(true));
   } catch (err) {
     const authFailureAction = createAuthFailureAction(err.message);
     dispatch(authFailureAction);

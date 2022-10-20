@@ -6,6 +6,8 @@ import {
   AUTH_LOGOUT,
   AUTH_INITIALIZED,
   AUTH_CLEAR_REDIRECT,
+  AUTH_CLEAR_MESSAGE,
+  RESET_REGISTER_STATE,
 } from './auth-action-types';
 
 const authReducer = (currentState, action) => {
@@ -46,13 +48,17 @@ const authReducer = (currentState, action) => {
       newState.loggedIn = false;
       newState.loading = false;
       newState.user = null;
-      newState.role = 'VISITOR';
+      newState.role = 'USER';
       newState.token = null;
       break;
     }
 
     case AUTH_CLEAR_ERRORS: {
       newState.error = null;
+      break;
+    }
+    case AUTH_CLEAR_MESSAGE: {
+      newState.message = null;
       break;
     }
 
@@ -62,6 +68,10 @@ const authReducer = (currentState, action) => {
     }
     case AUTH_CLEAR_REDIRECT: {
       newState.redirect = null;
+      break;
+    }
+    case RESET_REGISTER_STATE: {
+      newState.successRegister = action.payload;
       break;
     }
 
