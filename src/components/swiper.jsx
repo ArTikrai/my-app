@@ -48,7 +48,7 @@ const SwiperMovie = ({
     }) => (
       <SwiperSlide key={id} style={{ height: 'auto' }}>
         <MovieCard
-          key={id}
+          id={id}
           title={title}
           description={description}
           img={img}

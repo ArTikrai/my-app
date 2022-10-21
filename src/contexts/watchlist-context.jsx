@@ -9,6 +9,8 @@ export const WatchlistProvider = ({ children }) => {
   const watchlistContextValue = React.useMemo(() => ({
     watchlistMovies,
 
+    getWatchlistMovie: (id) => watchlistMovies.find((x) => x.id === id),
+
     addWatchlistMovies: ({ id, count }) => setWatchlistMovies([...watchlistMovies, { id, count }]),
 
     deleteWatchlistMovies: (id) => setWatchlistMovies(watchlistMovies.filter((x) => x.id !== id)),

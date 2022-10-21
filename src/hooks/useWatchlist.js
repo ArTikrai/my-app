@@ -1,6 +1,6 @@
 import * as React from 'react';
 import WatchlistContext from 'contexts/watchlist-context';
 
-const useCart = () => React.useContext(WatchlistContext);
+const useWatchlist = () => React.useContext(WatchlistContext);
 
-export default useCart;
+export default useWatchlist;
