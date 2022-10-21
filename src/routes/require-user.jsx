@@ -3,7 +3,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { authClearRedirect } from 'store/auth/auth-actions';
 
-const RequireVisitor = ({ children: Page }) => {
+const RequireUser = ({ children: Page }) => {
   const { loggedIn, redirect, dispatch } = useAuth();
 
   if (loggedIn) {
@@ -19,4 +19,4 @@ const RequireVisitor = ({ children: Page }) => {
   return Page;
 };
 
-export default RequireVisitor;
+export default RequireUser;
