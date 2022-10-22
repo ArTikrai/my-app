@@ -7,7 +7,7 @@ const CategoryTitle = ({ categoryTitle }) => (
     variant="h4"
     sx={{
       color: 'black',
-      mt: '70px',
+      mt: '50px',
       mb: '15px',
       ml: '50px',
     }}

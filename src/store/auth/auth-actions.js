@@ -1,4 +1,6 @@
 import AuthService from 'services/auth-service';
+import WatchlistService from 'services/watchlist-service';
+
 import {
   AUTH_LOADING,
   AUTH_SUCCESS,
@@ -39,7 +41,7 @@ export const createAuthFailureAction = (message) => ({
   payload: { message },
 });
 
-export const createLoginThunkAction = (credentials, redirect) => /* return */ async (dispatch) => {
+export const createLoginThunkAction = (credentials, redirect) => async (dispatch) => {
   try {
     dispatch(authLoadingAction);
     const authData = await AuthService.login(credentials);
@@ -83,6 +85,20 @@ export const createAuthUpdateProfileThunkAction = (formData) => async (dispatch,
   try {
     dispatch(authLoadingAction);
     const authData = await AuthService.updateProfile({ formData, token });
+    const authSuccessAction = createAuthSuccessAction({ ...authData });
+
+    dispatch(authSuccessAction);
+  } catch (err) {
+    const authFailureAction = createAuthFailureAction(err.message);
+    dispatch(authFailureAction);
+  }
+};
+
+export const createAuthWatchlistThunkAction = (formData) => async (dispatch, getState) => {
+  const { token } = getState();
+  try {
+    dispatch(authLoadingAction);
+    const authData = await WatchlistService.createWatchlist({ formData, token });
     const authSuccessAction = createAuthSuccessAction({ ...authData });
 
     dispatch(authSuccessAction);

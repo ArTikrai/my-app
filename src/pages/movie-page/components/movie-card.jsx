@@ -9,35 +9,18 @@ import {
 } from '@mui/material';
 import { Image, TypographyLimited } from 'components';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-// import useWatchlist from 'hooks/useWatchlist';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import useAuth from 'hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
 import { createAuthWatchlistThunkAction } from 'store/auth/auth-actions';
-// import WatchlistService from '../../../services/watchlist-service';
 
-const MovieCard = ({
-  id,
-  title,
-  img,
-  description,
-  category,
-  price,
-  onDelete,
+const MovieCardById = ({
+  movie,
   onEdit,
+  onDelete,
 }) => {
-  const navigate = useNavigate();
-  // const {
-  //   getWatchlistMovie,
-  //   addWatchlistMovies,
-  //   deleteWatchlistMovies,
-  // } = useWatchlist();
   const [liked, setLiked] = React.useState(false);
 
-  // const { user } = useAuth();
   const { dispatch } = useAuth();
-
-  // console.log(user.watchlistMovie);
 
   const createWatchlistMovie = async (userProps) => {
     await dispatch(createAuthWatchlistThunkAction(userProps));
@@ -45,30 +28,20 @@ const MovieCard = ({
     // await fetchAllMovies();
   };
 
-  // const movieInWatchlist = getWatchlistMovie(id);
-  // console.log(movieInWatchlist);
-
-  // const handleWatchlistMovies = () => {
-  //   if (movieInWatchlist !== id) {
-  //     addWatchlistMovies({ id });
-  //     setLiked(true);
-  //   } else if (movieInWatchlist === id) {
-  //     deleteWatchlistMovies({ id });
-  //     setLiked(false);
-  //   }
-  // };
-
-  // React.useEffect(() => {
-  //   setLiked();
-  // }, []);
-
   return (
     <Card sx={{
-      display: 'flex', flexDirection: 'column', position: 'relative', height: '100%', minHeight: '545px', flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      position: 'relative',
+      maxHeight: '745px',
+      flexGrow: 1,
+      maxWidth: '550px',
+      margin: 'auto',
+      mb: 20,
     }}
     >
       <Box sx={{ position: 'relative', width: '100%', pt: '95%' }}>
-        <Image src={img} sx={{ position: 'absolute', top: 0, left: 0 }} />
+        <Image src={movie.img} sx={{ position: 'absolute', top: 0, left: 0 }} />
         <IconButton
           sx={{
             position: 'absolute',
@@ -76,7 +49,7 @@ const MovieCard = ({
             right: 5,
             color: 'red',
           }}
-          onClick={() => createWatchlistMovie(id)}
+          onClick={() => createWatchlistMovie(movie.id)}
         >
           { liked ? (
             <FavoriteIcon sx={{ width: 37, height: 37 }} />
@@ -94,11 +67,11 @@ const MovieCard = ({
           alignItems: 'center',
         }}
         >
-          <Typography variant="h5" component="div">{title}</Typography>
-          <Typography variant="h6" component="div" color="primary.main">{`${price} €`}</Typography>
+          <Typography variant="h5" component="div">{movie.title}</Typography>
+          <Typography variant="h6" component="div" color="primary.main">{`${movie.price} €`}</Typography>
         </Box>
-        <Typography variant="subtitle" component="div" sx={{ mb: 2 }}>{category.title}</Typography>
-        <TypographyLimited variant="body2" color="text.secondary">{description}</TypographyLimited>
+        <Typography variant="subtitle" component="div" sx={{ mb: 2 }}>{movie.category.title}</Typography>
+        <TypographyLimited variant="body2" color="text.secondary">{movie.description}</TypographyLimited>
       </CardContent>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button
@@ -116,19 +89,8 @@ const MovieCard = ({
           Delete
         </Button>
       </Box>
-      <Box>
-        <Button
-          size="small"
-          variant="contained"
-          fullWidth
-          sx={{ mt: 1 }}
-          onClick={() => navigate(`/movie/${id}`)}
-        >
-          Watch
-        </Button>
-      </Box>
     </Card>
   );
 };
 
-export default MovieCard;
+export default MovieCardById;

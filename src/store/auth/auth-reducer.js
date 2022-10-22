@@ -48,7 +48,7 @@ const authReducer = (currentState, action) => {
       newState.loggedIn = false;
       newState.loading = false;
       newState.user = null;
-      newState.role = 'USER';
+      newState.role = 'VISITOR';
       newState.token = null;
       break;
     }

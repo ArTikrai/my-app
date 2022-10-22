@@ -8,17 +8,25 @@ import AuthLayout from 'layouts/auth-layout';
 import RegisterPage from 'pages/register-page';
 import HomePage from '../pages/home-page';
 import MoviesPage from '../pages/movies-page';
+import MoviePage from '../pages/movie-page';
+
+import RequireVisitor from './require-visitor';
+import RequireAuth from './require-auth';
 
 const PageRoutes = () => (
   <Routes>
     <Route path="/" element={<MainLayout />}>
       <Route index element={<HomePage />} />
       <Route path="movies" element={<MoviesPage />} />
-      <Route path="watchlist" element={<WatchlistPage />} />
+      <Route path="movie/:movieId" element={<MoviePage />} />
+      <Route path="watchlist" element={<RequireAuth><WatchlistPage /></RequireAuth>} />
 
-      <Route path="auth/" element={<AuthLayout />}>
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
+      <Route
+        path="auth/"
+        element={<RequireVisitor><AuthLayout /></RequireVisitor>}
+      >
+        <Route path="login" element={<RequireVisitor><LoginPage /></RequireVisitor>} />
+        <Route path="register" element={<RequireVisitor><RegisterPage /></RequireVisitor>} />
       </Route>
     </Route>
   </Routes>

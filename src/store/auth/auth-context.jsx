@@ -9,7 +9,7 @@ const initialAuthState = {
   loggedIn: false,
   loading: false,
   user: null,
-  role: 'USER',
+  role: 'VISITOR',
   error: null,
   token: null,
   redirect: null,

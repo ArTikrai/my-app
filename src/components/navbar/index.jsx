@@ -46,7 +46,6 @@ const Navbar = () => {
                 open={userMenuOpen}
                 onClose={() => setUserMenuOpen(false)}
               >
-                {console.log(UserMenuIconRef.current)}
                 <MenuItem>
                   <Typography>{user.fullname}</Typography>
                 </MenuItem>

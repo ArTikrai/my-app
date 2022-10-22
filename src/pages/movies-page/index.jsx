@@ -21,7 +21,7 @@ const MoviesPage = () => {
 
   return (
     <>
-      <CategoryTitle style={{ marginTop: 150 }} categoryTitle="Fantasy" />
+      <CategoryTitle style={{ marginTop: 5 }} categoryTitle="Fantasy" />
       <SwiperMovie filteredMovies={fantasyMovies} />
       <CategoryTitle categoryTitle="Action" />
       <SwiperMovie filteredMovies={actionMovies} />

@@ -65,9 +65,10 @@ const WatchlistPage = () => {
             width: '100%',
             textAlign: 'center',
             mt: 6,
+            mb: 70,
           }}
         >
-          Nerasta prekių
+          Not found Movies
         </Typography>
       )}
     </Box>
