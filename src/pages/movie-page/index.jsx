@@ -5,9 +5,8 @@ import { Box, Alert } from '@mui/material';
 import MovieCardById from './components/movie-card';
 import { Background } from './components';
 
-const CupPage = () => {
+const MoviePage = () => {
   const { movieId } = useParams();
-  console.log(movieId);
   const [movie, setMovie] = React.useState(null);
   const [errorMsg, setErrorMsg] = React.useState(null);
 
@@ -35,4 +34,4 @@ const CupPage = () => {
   );
 };
 
-export default CupPage;
+export default MoviePage;

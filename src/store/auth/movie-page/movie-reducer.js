@@ -1,91 +1,91 @@
-import {
-  AUTH_LOADING,
-  AUTH_SUCCESS,
-  AUTH_FAILURE,
-  AUTH_CLEAR_ERRORS,
-  AUTH_INITIALIZED,
-  AUTH_CLEAR_REDIRECT,
-  AUTH_CLEAR_MESSAGE,
-  RESET_REGISTER_STATE,
-  MOVIE_MODAL_STATE,
-  MOVIE_BEING_UPDATE_STATE,
-} from './movie-action-types';
+// import {
+//   AUTH_LOADING,
+//   AUTH_SUCCESS,
+//   AUTH_FAILURE,
+//   AUTH_CLEAR_ERRORS,
+//   AUTH_INITIALIZED,
+//   AUTH_CLEAR_REDIRECT,
+//   AUTH_CLEAR_MESSAGE,
+//   RESET_REGISTER_STATE,
+//   MOVIE_MODAL_STATE,
+//   MOVIE_BEING_UPDATE_STATE,
+// } from './movie-action-types';
 
-const movieReducer = (currentState, action) => {
-  const newState = {
-    ...currentState,
-  };
+// const movieReducer = (currentState, action) => {
+//   const newState = {
+//     ...currentState,
+//   };
 
-  switch (action.type) {
-    case AUTH_LOADING: {
-      newState.loading = true;
-      newState.error = null;
-      break;
-    }
+//   switch (action.type) {
+//     case AUTH_LOADING: {
+//       newState.loading = true;
+//       newState.error = null;
+//       break;
+//     }
 
-    case AUTH_SUCCESS: {
-      localStorage.setItem('token', action.payload.token);
+//     case AUTH_SUCCESS: {
+//       localStorage.setItem('token', action.payload.token);
 
-      newState.loggedIn = true;
-      newState.user = action.payload.user;
-      newState.token = action.payload.token;
-      newState.loading = false;
-      newState.role = action.payload.user.role;
-      if (action.payload.redirect) {
-        newState.redirect = action.payload.redirect;
-      }
-      break;
-    }
+//       newState.loggedIn = true;
+//       newState.user = action.payload.user;
+//       newState.token = action.payload.token;
+//       newState.loading = false;
+//       newState.role = action.payload.user.role;
+//       if (action.payload.redirect) {
+//         newState.redirect = action.payload.redirect;
+//       }
+//       break;
+//     }
 
-    case AUTH_FAILURE: {
-      newState.error = action.payload.message;
-      newState.loading = false;
-      break;
-    }
+//     case AUTH_FAILURE: {
+//       newState.error = action.payload.message;
+//       newState.loading = false;
+//       break;
+//     }
 
-    case AUTH_CLEAR_ERRORS: {
-      newState.error = null;
-      break;
-    }
-    case AUTH_CLEAR_MESSAGE: {
-      newState.message = null;
-      break;
-    }
+//     case AUTH_CLEAR_ERRORS: {
+//       newState.error = null;
+//       break;
+//     }
+//     case AUTH_CLEAR_MESSAGE: {
+//       newState.message = null;
+//       break;
+//     }
 
-    case AUTH_INITIALIZED: {
-      newState.initialized = true;
-      break;
-    }
-    case AUTH_CLEAR_REDIRECT: {
-      newState.redirect = null;
-      break;
-    }
-    case RESET_REGISTER_STATE: {
-      newState.successRegister = action.payload;
-      break;
-    }
+//     case AUTH_INITIALIZED: {
+//       newState.initialized = true;
+//       break;
+//     }
+//     case AUTH_CLEAR_REDIRECT: {
+//       newState.redirect = null;
+//       break;
+//     }
+//     case RESET_REGISTER_STATE: {
+//       newState.successRegister = action.payload;
+//       break;
+//     }
 
-    case MOVIE_MODAL_STATE: {
-      newState.modalOpen = action.payload;
-      break;
-    }
-    case MOVIE_BEING_UPDATE_STATE: {
-      newState.beingEdit = action.payload;
-      break;
-    }
+// case MOVIE_MODAL_STATE: {
+//   newState.modalOpen = action.payload;
+//   break;
+// }
+// case MOVIE_BEING_UPDATE_STATE: {
+//   newState.beingEdit = action.payload;
+//   break;
+// }
 
-    default: {
-      console.error('Unexpected Action type in AuthReducer');
-    }
-  }
+//     default: {
+//       console.error('Unexpected Action type in AuthReducer');
+//     }
+//   }
 
-  console.log(
-    `%c${action.type}: %c${JSON.stringify(newState, null, 4)}`,
-    'color: blue',
-    'font-weight: 700',
-  );
+//   console.log(
+//     `%c${action.type}: %c${JSON.stringify(newState, null, 4)}`,
+//     'color: blue',
+//     'font-weight: 700',
+//   );
 
-  return newState;
-};
+//   return newState;
+// };
 
-export default movieReducer;
+// export default movieReducer;

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   Paper,
   Typography,
@@ -7,7 +7,7 @@ import {
   Button,
   MenuItem,
 } from '@mui/material';
-import MovieService from '../../../services/movie-service';
+import CategoryService from '../../../services/category-service';
 
 const MovieForm = ({
   onSubmit,
@@ -35,12 +35,19 @@ const MovieForm = ({
     });
   };
 
-  React.useEffect(() => {
-    (async () => {
-      const fethedCategories = await MovieService.fetchCategories();
-      setCategories(fethedCategories);
-    })();
-  }, []);
+  // React.useEffect(() => {
+  //   (async () => {
+  //     const fethedCategories = await CategoryService.fetchAll();
+  //     setCategories(fethedCategories);
+  //   })();
+  // }, []);
+
+  const fetchCategories = async () => {
+    const fetchedCategories = await CategoryService.fetchAll();
+    setCategories(fetchedCategories);
+  };
+
+  React.useEffect(() => { fetchCategories(); }, [categories]);
 
   return (
     <Paper component="form" sx={{ p: 3, minWidth: { xs: '250px', sm: '400px' } }} onSubmit={handleSubmit}>

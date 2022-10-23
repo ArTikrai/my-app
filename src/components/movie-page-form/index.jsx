@@ -1,49 +1,44 @@
 import * as React from 'react';
 import { Box, Modal } from '@mui/material';
+import MovieService from 'services/movie-service';
+import useAuth from 'hooks/useAuth';
+import { beingUpdateState, modalState } from 'store/auth/auth-actions';
 import MovieForm from './components/movie-form';
-import MovieService from '../../services/movie-service';
 
-const App = () => {
+const MoviePageForm = () => {
+  const movieState = useAuth();
+  const { dispatch } = useAuth();
   const [movies, setMovies] = React.useState([]);
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const [movieCardBeingEdited, setMovieCardBeingEdited] = React.useState(null);
 
   const closeModal = () => {
-    setModalOpen(false);
-    setMovieCardBeingEdited(null);
+    dispatch(modalState(false));
   };
 
-  const fetchAllMovies = async () => {
+  const fetchedAllMovies = async () => {
     const fetchedMovies = await MovieService.fetchAll();
     setMovies(fetchedMovies);
   };
 
   const createMovieCard = async (movieProps) => {
     await MovieService.create(movieProps);
-    await fetchAllMovies();
-    closeModal();
+    await fetchedAllMovies();
   };
 
-  // const editMovieCard = (id) => {
-  //   const foundMovies = movies.find((c) => c.id === id);
-  //   setMovieCardBeingEdited(foundMovies);
-  //   setModalOpen(true);
-  // };
+  const editMovieCard = (id) => {
+    const foundMovies = movies.find((c) => c.id === id);
+    dispatch(beingUpdateState(foundMovies));
+  };
+  // editMovieCard();
 
   const updateMovieCard = async (movieProps) => {
-    await MovieService.update(movieCardBeingEdited.id, movieProps);
-    await fetchAllMovies();
-    closeModal();
+    await MovieService.update(movieState.beingEdit.id, movieProps);
+    await fetchedAllMovies();
   };
-
   // const removeMovieCard = async (id) => {
   //   await MovieService.remove(id);
   //   fetchAllMovies();
   // };
-
-  React.useEffect(() => {
-    fetchAllMovies();
-  }, []);
+  React.useEffect(() => { fetchedAllMovies(movies); });
 
   return (
     <Box sx={{
@@ -51,20 +46,21 @@ const App = () => {
     }}
     >
       {/* <MenuAppBar openModal={() => setModalOpen(true)} /> */}
-      <Modal open={modalOpen} onClose={closeModal}>
+      <Modal open={movieState.modalOpen} onClose={closeModal}>
         <Box sx={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
+          zIndex: 400,
         }}
         >
           <MovieForm
-            onSubmit={movieCardBeingEdited ? updateMovieCard : createMovieCard}
-            formTitle={movieCardBeingEdited ? 'Movie Card Edit' : 'Add New Movie Card'}
-            submitText={movieCardBeingEdited ? 'Update' : 'Create'}
-            color={movieCardBeingEdited ? 'warning' : 'success'}
-            initValues={movieCardBeingEdited}
+            onSubmit={movieState.beingEdit ? updateMovieCard : createMovieCard}
+            formTitle={movieState.beingEdit ? 'Movie Card Edit' : 'Add New Movie Card'}
+            submitText={movieState.beingEdit ? 'Update' : 'Create'}
+            color={movieState.beingEdit ? 'warning' : 'success'}
+            initValues={movieState.beingEdit}
           />
         </Box>
       </Modal>
@@ -76,4 +72,4 @@ const App = () => {
     </Box>
   );
 };
-export default App;
+export default MoviePageForm;

@@ -13,11 +13,11 @@ const MoviesPage = () => {
     setMovies(fetchedMovies);
   }, [searchParams]);
 
-  React.useEffect(() => { handleFetchedMovies(); }, [handleFetchedMovies]);
-
   const fantasyMovies = movies.filter((arr) => arr.category.title === 'Fantasy');
   const actionMovies = movies.filter((arr) => arr.category.title === 'Action');
   const comedyMovies = movies.filter((arr) => arr.category.title === 'Comedy');
+
+  React.useEffect(() => { handleFetchedMovies(movies); });
 
   return (
     <>

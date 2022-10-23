@@ -11,9 +11,10 @@ import {
   Divider,
 } from '@mui/material';
 import useAuth from 'hooks/useAuth';
-import { authLogoutAction } from 'store/auth/auth-actions';
+import { authLogoutAction, modalState } from 'store/auth/auth-actions';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
+import MoviePageForm from 'components/movie-page-form';
 import NavbarDrawer from './components/drawer';
 import * as Nav from './components/index';
 
@@ -32,6 +33,7 @@ const Navbar = () => {
           </Typography>
           {loggedIn ? (
             <>
+              <MoviePageForm />
               <IconButton
                 sx={{ mr: 7, alignSelf: 'center' }}
                 ref={UserMenuIconRef}
@@ -54,7 +56,12 @@ const Navbar = () => {
                   <Typography>Create HomePage Movie</Typography>
                 </MenuItem>
                 <Divider sx={{ my: 1 }} />
-                <MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    dispatch(modalState(true));
+                    setUserMenuOpen(false);
+                  }}
+                >
                   <Typography>Create MoviesPage Movie</Typography>
                 </MenuItem>
                 <Divider sx={{ my: 1 }} />

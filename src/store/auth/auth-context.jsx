@@ -15,6 +15,8 @@ const initialAuthState = {
   redirect: null,
   message: null,
   successRegister: false,
+  modalOpen: false,
+  beingEdit: null,
 };
 
 const AuthContext = React.createContext(initialAuthState);

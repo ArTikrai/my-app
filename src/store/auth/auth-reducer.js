@@ -8,6 +8,8 @@ import {
   AUTH_CLEAR_REDIRECT,
   AUTH_CLEAR_MESSAGE,
   RESET_REGISTER_STATE,
+  MOVIE_MODAL_STATE,
+  MOVIE_BEING_UPDATE_STATE,
 } from './auth-action-types';
 
 const authReducer = (currentState, action) => {
@@ -72,6 +74,14 @@ const authReducer = (currentState, action) => {
     }
     case RESET_REGISTER_STATE: {
       newState.successRegister = action.payload;
+      break;
+    }
+    case MOVIE_MODAL_STATE: {
+      newState.modalOpen = action.payload;
+      break;
+    }
+    case MOVIE_BEING_UPDATE_STATE: {
+      newState.beingEdit = action.payload;
       break;
     }
 

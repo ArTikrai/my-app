@@ -21,6 +21,24 @@ const fetchById = async (id) => {
   return item;
 };
 
+const create = async (credetials) => {
+  const response = await fetch(`${domain}/${collectionName}`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credetials),
+  });
+  const userData = await response.json();
+
+  if (response.status >= 400) {
+    throw new Error(userData.message);
+  }
+
+  return userData;
+};
+
 const update = async (id, movieProps) => {
   const response = await fetch(`${domain}/${collectionName}/${id}`, {
     method: 'PATCH',
@@ -50,18 +68,11 @@ const fetchByIdArr = async (idArr) => {
   return items;
 };
 
-const fetchCategories = async () => {
-  const response = await fetch(`${domain}/categories`);
-  const categories = await response.json();
-
-  return categories;
-};
-
 const MovieService = {
   fetchAll,
-  fetchCategories,
   fetchByIdArr,
   fetchById,
+  create,
   update,
   remove,
 };
