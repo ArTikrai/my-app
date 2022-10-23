@@ -21,6 +21,28 @@ const fetchById = async (id) => {
   return item;
 };
 
+const update = async (id, movieProps) => {
+  const response = await fetch(`${domain}/${collectionName}/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movieProps),
+  });
+
+  const movie = await response.json();
+
+  return movie;
+};
+
+const remove = async (id) => {
+  await fetch(`${domain}/${collectionName}/${id}`, {
+    method: 'DELETE',
+  });
+
+  return true;
+};
+
 const fetchByIdArr = async (idArr) => {
   const idsParamsString = idArr.map((id) => `id=${id}`).join('&');
   const items = await fetchAll(idsParamsString);
@@ -40,6 +62,8 @@ const MovieService = {
   fetchCategories,
   fetchByIdArr,
   fetchById,
+  update,
+  remove,
 };
 
 export default MovieService;

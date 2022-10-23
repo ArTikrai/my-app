@@ -50,6 +50,14 @@ const Navbar = () => {
                   <Typography>{user.fullname}</Typography>
                 </MenuItem>
                 <Divider sx={{ my: 1 }} />
+                <MenuItem>
+                  <Typography>Create HomePage Movie</Typography>
+                </MenuItem>
+                <Divider sx={{ my: 1 }} />
+                <MenuItem>
+                  <Typography>Create MoviesPage Movie</Typography>
+                </MenuItem>
+                <Divider sx={{ my: 1 }} />
                 <MenuItem
                   onClick={() => {
                     dispatch(authLogoutAction);
