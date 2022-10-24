@@ -10,6 +10,7 @@ import {
   RESET_REGISTER_STATE,
   MOVIE_MODAL_STATE,
   MOVIE_BEING_UPDATE_STATE,
+  WATCH_MOVIES_CHANGE,
 } from './auth-action-types';
 
 const authReducer = (currentState, action) => {
@@ -82,6 +83,10 @@ const authReducer = (currentState, action) => {
     }
     case MOVIE_BEING_UPDATE_STATE: {
       newState.beingEdit = action.payload;
+      break;
+    }
+    case WATCH_MOVIES_CHANGE: {
+      newState.watchMoviesChange = action.payload;
       break;
     }
 

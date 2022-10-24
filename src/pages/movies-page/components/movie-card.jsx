@@ -13,7 +13,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import useAuth from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { createAuthWatchlistThunkAction } from 'store/auth/auth-actions';
+import { createAuthWatchlistThunkAction, modalState } from 'store/auth/auth-actions';
 // import WatchlistService from '../../../services/watchlist-service';
 
 const MovieCard = ({
@@ -103,7 +103,10 @@ const MovieCard = ({
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button
           size="small"
-          onClick={onEdit}
+          onClick={() => {
+            dispatch(modalState(true));
+            onEdit(id);
+          }}
           sx={{ color: 'warning.main' }}
         >
           Edit

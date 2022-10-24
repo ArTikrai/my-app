@@ -14,6 +14,7 @@ import {
   RESET_REGISTER_STATE,
   MOVIE_MODAL_STATE,
   MOVIE_BEING_UPDATE_STATE,
+  WATCH_MOVIES_CHANGE,
 } from './auth-action-types';
 
 export const authInitializedAction = { type: AUTH_INITIALIZED };
@@ -28,6 +29,8 @@ export const modalState = (action) => ({
 });
 
 export const beingUpdateState = (action) => ({ type: MOVIE_BEING_UPDATE_STATE, payload: action });
+
+export const watchMoviesChanges = (action) => ({ type: WATCH_MOVIES_CHANGE, payload: action });
 
 export const authClearErrorsAction = { type: AUTH_CLEAR_ERRORS };
 
@@ -115,6 +118,18 @@ export const createAuthUpdateProfileThunkAction = (formData) => async (dispatch,
     dispatch(authFailureAction);
   }
 };
+// export const updateMoviesPageThunkAction = (formData) => async (dispatch, getState) => {
+//   const { beingEdit.id } = getState();
+//   try {
+//     dispatch(authLoadingAction);
+//     const authData = await MovieService.update({ beingEdit.id, formData });
+
+//     dispatch(authSuccessAction);
+//   } catch (err) {
+//     const authFailureAction = createAuthFailureAction(err.message);
+//     dispatch(authFailureAction);
+//   }
+// };
 
 export const createAuthWatchlistThunkAction = (formData) => async (dispatch, getState) => {
   const { token } = getState();

@@ -17,6 +17,7 @@ const initialAuthState = {
   successRegister: false,
   modalOpen: false,
   beingEdit: null,
+  watchMoviesChange: false,
 };
 
 const AuthContext = React.createContext(initialAuthState);
