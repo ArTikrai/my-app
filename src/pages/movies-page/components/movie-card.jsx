@@ -13,7 +13,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import useAuth from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { createAuthWatchlistThunkAction, modalState } from 'store/auth/auth-actions';
+import { modalState } from 'store/auth/auth-actions';
 // import WatchlistService from '../../../services/watchlist-service';
 
 const MovieCard = ({
@@ -33,27 +33,16 @@ const MovieCard = ({
   //   deleteWatchlistMovies,
   // } = useWatchlist();
   const [liked, setLiked] = React.useState(false);
-
-  // const { user } = useAuth();
   const { dispatch } = useAuth();
 
-  // console.log(user.watchlistMovie);
-
-  const createWatchlistMovie = async (userProps) => {
-    await dispatch(createAuthWatchlistThunkAction(userProps));
-    setLiked(true);
-    // await fetchAllMovies();
-  };
-
   // const movieInWatchlist = getWatchlistMovie(id);
-  // console.log(movieInWatchlist);
 
   // const handleWatchlistMovies = () => {
   //   if (movieInWatchlist !== id) {
-  //     addWatchlistMovies({ id });
+  //     addWatchlistMovies(id);
   //     setLiked(true);
   //   } else if (movieInWatchlist === id) {
-  //     deleteWatchlistMovies({ id });
+  //     deleteWatchlistMovies(id);
   //     setLiked(false);
   //   }
   // };
@@ -76,7 +65,7 @@ const MovieCard = ({
             right: 5,
             color: 'red',
           }}
-          onClick={() => createWatchlistMovie(id)}
+          onClick={() => handleWatchlistMovies()}
         >
           { liked ? (
             <FavoriteIcon sx={{ width: 37, height: 37 }} />

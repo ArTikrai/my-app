@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Modal } from '@mui/material';
 import MovieService from 'services/movie-service';
 import useAuth from 'hooks/useAuth';
-import { modalState } from 'store/auth/auth-actions';
+import { modalState, beingUpdateState } from 'store/auth/auth-actions';
 import MovieForm from './components/movie-form';
 
 const MoviePageForm = () => {
@@ -11,6 +11,7 @@ const MoviePageForm = () => {
 
   const closeModal = () => {
     dispatch(modalState(false));
+    dispatch(beingUpdateState(null));
   };
 
   const createMovieCard = async (movieProps) => {
@@ -21,6 +22,7 @@ const MoviePageForm = () => {
   const updateMovieCard = async (movieProps) => {
     await MovieService.update(movieState.beingEdit.id, movieProps);
     dispatch(modalState(false));
+    dispatch(beingUpdateState(null));
   };
 
   return (
@@ -38,7 +40,7 @@ const MoviePageForm = () => {
         }}
         >
           <MovieForm
-            onSubmit={movieState.beingEdit ? updateMovieCard : createMovieCard}
+            onSubmited={movieState.beingEdit ? updateMovieCard : createMovieCard}
             formTitle={movieState.beingEdit ? 'Movie Card Edit' : 'Add New Movie Card'}
             submitText={movieState.beingEdit ? 'Update' : 'Create'}
             color={movieState.beingEdit ? 'warning' : 'success'}

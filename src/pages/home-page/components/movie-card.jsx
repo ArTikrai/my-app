@@ -8,6 +8,8 @@ import
 } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { TypographyLimited } from 'components';
+import YoutubeEmbed from 'components/trailer/components/YoutubeEmbed';
+import Iframe from 'components/trailer/components/iframe';
 import { Background } from '.';
 
 const HomeMovieCard = ({
@@ -15,6 +17,7 @@ const HomeMovieCard = ({
   img,
   title,
   description,
+  trailer,
 }) => (
   <Card>
     <Background key={id} component="img" src={img} />
@@ -38,6 +41,7 @@ const HomeMovieCard = ({
         <PlayCircleIcon />
         Watch Trailer
       </Button>
+      {/* <Iframe sx={{ zIndex: 100 }} trailer="rokGy0huYEA" /> */}
     </Box>
   </Card>
 );

@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/navigation';
+import YoutubeEmbed from 'components/trailer/components/YoutubeEmbed';
 import HomeMovieCard from './movie-card';
 
 const HomeSwiper = ({ homeMovies }) => (
@@ -27,6 +28,7 @@ const HomeSwiper = ({ homeMovies }) => (
         title,
         description,
         img,
+        trailer,
       }) => (
         <SwiperSlide key={id}>
           <HomeMovieCard
@@ -36,6 +38,7 @@ const HomeSwiper = ({ homeMovies }) => (
             img={img}
             homeMovies={homeMovies}
           />
+          <YoutubeEmbed sx={{ zIndex: 1000 }} embedId={trailer} />
         </SwiperSlide>
       ))}
     </Swiper>
