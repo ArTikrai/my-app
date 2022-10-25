@@ -6,43 +6,49 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/navigation';
-import YoutubeEmbed from 'components/trailer/components/YoutubeEmbed';
 import HomeMovieCard from './movie-card';
 
-const HomeSwiper = ({ homeMovies }) => (
-  <Box>
-    <Swiper
-      modules={[Navigation, Autoplay]}
-      navigation
-      autoplay={{
-        delay: 7000,
-        disableOnInteraction: false,
-      }}
-      style={{
-        height: '100vh',
-        width: '100%',
-      }}
-    >
-      {homeMovies.map(({
-        id,
-        title,
-        description,
-        img,
-        trailer,
-      }) => (
-        <SwiperSlide key={id}>
-          <HomeMovieCard
-            id={id}
-            title={title}
-            description={description}
-            img={img}
-            homeMovies={homeMovies}
-          />
-          <YoutubeEmbed sx={{ zIndex: 1000 }} embedId={trailer} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  </Box>
-);
+const HomeSwiper = ({ homeMovies, homeMovieId, foundHomeMovie }) => {
+  const [homeSwiper, setHomeSwiper] = React.useState(true);
+  console.log(homeSwiper);
 
+  return (
+    <Box>
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        navigation
+        autoplay={homeSwiper && ({
+          delay: 7000,
+          disableOnInteraction: false,
+        })}
+        style={{
+          height: '100vh',
+          width: '100%',
+        }}
+      >
+        {homeMovies.map(({
+          id,
+          title,
+          description,
+          img,
+          trailer,
+        }) => (
+          <SwiperSlide key={id}>
+            <HomeMovieCard
+              id={id}
+              title={title}
+              description={description}
+              img={img}
+              trailer={trailer}
+              homeMovies={homeMovies}
+              homeMovieId={homeMovieId}
+              foundHomeMovie={foundHomeMovie}
+              setHomeSwiper={setHomeSwiper}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </Box>
+  );
+};
 export default HomeSwiper;

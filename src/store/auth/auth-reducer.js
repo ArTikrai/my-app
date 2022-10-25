@@ -11,6 +11,7 @@ import {
   MOVIE_MODAL_STATE,
   MOVIE_BEING_UPDATE_STATE,
   WATCH_MOVIES_CHANGE,
+  HOME_TRAILER_MODAL,
 } from './auth-action-types';
 
 const authReducer = (currentState, action) => {
@@ -88,6 +89,10 @@ const authReducer = (currentState, action) => {
     }
     case WATCH_MOVIES_CHANGE: {
       newState.watchMoviesChange = action.payload;
+      break;
+    }
+    case HOME_TRAILER_MODAL: {
+      newState.homeTrailerModal = action.payload;
       break;
     }
 

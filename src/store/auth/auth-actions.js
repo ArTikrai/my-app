@@ -15,6 +15,7 @@ import {
   MOVIE_MODAL_STATE,
   MOVIE_BEING_UPDATE_STATE,
   WATCH_MOVIES_CHANGE,
+  HOME_TRAILER_MODAL,
 } from './auth-action-types';
 
 export const authInitializedAction = { type: AUTH_INITIALIZED };
@@ -31,6 +32,8 @@ export const modalState = (action) => ({
 export const beingUpdateState = (action) => ({ type: MOVIE_BEING_UPDATE_STATE, payload: action });
 
 export const watchMoviesChanges = (action) => ({ type: WATCH_MOVIES_CHANGE, payload: action });
+
+export const homeTrailerState = (action) => ({ type: HOME_TRAILER_MODAL, payload: action });
 
 export const authClearErrorsAction = { type: AUTH_CLEAR_ERRORS };
 

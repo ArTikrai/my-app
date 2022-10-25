@@ -18,6 +18,8 @@ const initialAuthState = {
   modalOpen: false,
   beingEdit: null,
   watchMoviesChange: false,
+  homeTrailerModal: false,
+
 };
 
 const AuthContext = React.createContext(initialAuthState);
