@@ -6,8 +6,7 @@ export const Background = styled(Box)({
   left: 0,
   height: '100vh',
   width: '100%',
-  zIndex: 0,
+  zIndex: 1,
   objectFit: 'cover',
-  filter: 'brightness(80%)',
-  backgroundColor: '#00003a',
+  filter: 'brightness(50%)',
 });

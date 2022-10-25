@@ -14,7 +14,7 @@ const WatchlistCard = ({
   title,
   description,
   img,
-  price,
+  date,
   category,
 }) => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const WatchlistCard = ({
         }}
         >
           <Typography variant="h6" component="div">{title}</Typography>
-          <Typography variant="h6" component="div" color="primary">{`${price} $`}</Typography>
+          <Typography variant="subtitle" component="div" color="primary">{`${date} `}</Typography>
         </Box>
         <Typography variant="subtitle" component="div">{category.title}</Typography>
         <TypographyLimited variant="body2" color="text.secondary">{description}</TypographyLimited>
@@ -52,7 +52,7 @@ const WatchlistCard = ({
           sx={{ mt: 1 }}
           onClick={() => navigate(`/movie/${id}`)}
         >
-          Peržiūrėti
+          Watch
         </Button>
       </Box>
     </Card>

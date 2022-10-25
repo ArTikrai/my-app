@@ -8,7 +8,7 @@ import YoutubeEmbed from './components/YoutubeEmbed';
 const HomeTrailer = ({ trailer, setHomeSwiper }) => {
   const movieState = useAuth();
   const { dispatch } = useAuth();
-  console.log(setHomeSwiper);
+
   const closeModal = () => {
     dispatch(homeTrailerState(false));
     setHomeSwiper(true);

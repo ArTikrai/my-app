@@ -4,7 +4,7 @@ const TypographyLimited = styled(Typography)(({ maxLines }) => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   display: '-webkit-box',
-  WebkitLineClamp: maxLines ?? 5,
+  WebkitLineClamp: maxLines ?? 3,
   WebkitBoxOrient: 'vertical',
 }));
 

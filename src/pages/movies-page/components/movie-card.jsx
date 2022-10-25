@@ -9,11 +9,12 @@ import {
 } from '@mui/material';
 import { Image, TypographyLimited } from 'components';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-// import useWatchlist from 'hooks/useWatchlist';
+import useWatchlist from 'hooks/useWatchlist';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import useAuth from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { modalState } from 'store/auth/auth-actions';
+import { useEffect } from 'react';
 // import WatchlistService from '../../../services/watchlist-service';
 
 const MovieCard = ({
@@ -22,34 +23,46 @@ const MovieCard = ({
   img,
   description,
   category,
-  price,
+  date,
   onDelete,
   onEdit,
 }) => {
   const navigate = useNavigate();
-  // const {
-  //   getWatchlistMovie,
-  //   addWatchlistMovies,
-  //   deleteWatchlistMovies,
-  // } = useWatchlist();
+  const {
+    movieInWatchlist,
+    getWatchlistMovie,
+    addWatchlistMovies,
+    deleteWatchlistMovies,
+  } = useWatchlist();
   const [liked, setLiked] = React.useState(false);
   const { dispatch } = useAuth();
 
-  // const movieInWatchlist = getWatchlistMovie(id);
+  const currentMovie = getWatchlistMovie(id);
 
-  // const handleWatchlistMovies = () => {
-  //   if (movieInWatchlist !== id) {
-  //     addWatchlistMovies(id);
-  //     setLiked(true);
-  //   } else if (movieInWatchlist === id) {
-  //     deleteWatchlistMovies(id);
-  //     setLiked(false);
-  //   }
-  // };
+  useEffect(() => {
+    console.log('MOvies in watchlist: ', movieInWatchlist);
+    if (movieInWatchlist) {
+      movieInWatchlist?.forEach((element) => {
+        if (element === id) {
+          setLiked(true);
+        }
+      });
+    }
+  }, [id, movieInWatchlist]);
 
-  // React.useEffect(() => {
-  //   setLiked();
-  // }, []);
+  const handleWatchlistMovies = () => {
+    if (currentMovie?.id !== id) {
+      addWatchlistMovies(id);
+      setLiked(true);
+    } else if (currentMovie?.id === id) {
+      deleteWatchlistMovies(id);
+      setLiked(false);
+    }
+  };
+
+  React.useEffect(() => {
+    setLiked();
+  }, []);
 
   return (
     <Card sx={{
@@ -84,7 +97,7 @@ const MovieCard = ({
         }}
         >
           <Typography variant="h5" component="div">{title}</Typography>
-          <Typography variant="h6" component="div" color="primary.main">{`${price} €`}</Typography>
+          <Typography variant="subtitle" component="div" color="primary.main">{`${date}`}</Typography>
         </Box>
         <Typography variant="subtitle" component="div" sx={{ mb: 2 }}>{category.title}</Typography>
         <TypographyLimited variant="body2" color="text.secondary">{description}</TypographyLimited>

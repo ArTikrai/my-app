@@ -1,25 +1,28 @@
 import * as React from 'react';
+import { useMemo } from 'react';
 import useLocalStorage from 'hooks/useLocalStorage';
 
 const WatchlistContext = React.createContext();
 
 export const WatchlistProvider = ({ children, userID }) => {
   const [watchlistMovies, setWatchlistMovies] = useLocalStorage('watchlistMovies', []);
+  const currentWatchcList = useMemo(() => watchlistMovies[userID] || [], [userID, watchlistMovies]);
 
   const watchlistContextValue = React.useMemo(() => ({
-    watchlistMovies,
+    watchlistMovies: currentWatchcList,
 
-    getWatchlistMovie: (id) => watchlistMovies[userID].find((x) => x.id === id),
+    getWatchlistMovie: (id) => currentWatchcList.find((x) => x.id === id),
 
-    addWatchlistMovies: ({ id }) => {
-      setWatchlistMovies({ ...watchlistMovies, [userID]: [...watchlistMovies[userID], { id }] });
+    addWatchlistMovies: (id) => {
+      console.log('Added movie', id);
+      setWatchlistMovies({ ...watchlistMovies, [userID]: [...currentWatchcList, { id }] });
     },
 
     deleteWatchlistMovies: (id) => setWatchlistMovies(
-      { ...watchlistMovies, [userID]: watchlistMovies.filter((x) => x.id !== id) },
+      { ...watchlistMovies, [userID]: currentWatchcList.filter((x) => x.id !== id) },
     ),
 
-  }), [watchlistMovies, userID, setWatchlistMovies]);
+  }), [watchlistMovies, currentWatchcList, setWatchlistMovies, userID]);
 
   return (
     <WatchlistContext.Provider value={watchlistContextValue}>{children}</WatchlistContext.Provider>

@@ -24,7 +24,7 @@ const MoviePage = () => {
   return (
     <Box sx={{
       mx: 4,
-      my: 4,
+      height: '100vh',
     }}
     >
       <Background />

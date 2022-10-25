@@ -23,14 +23,24 @@ const MovieForm = ({
   const initialValues = {
     title: (initValues?.title ?? ''),
     category: (initValues?.categoryId ?? ''),
-    price: (initValues?.price ?? ''),
+    date: (initValues?.date ?? ''),
     img: (initValues?.img ?? ''),
     description: initValues?.description ?? '',
   };
 
-  const onSubmitRef = React.useRef((credentials) => {
-    onSubmited(credentials);
-  });
+  // const onSubmitRef = React.useRef((credentials) => {
+  //   onSubmited(credentials);
+  // });
+
+  const onSubmit = (values) => {
+    onSubmited({
+      title: values.title,
+      categoryId: values.category,
+      img: values.img,
+      description: values.description,
+      date: values.date,
+    });
+  };
 
   const {
     values, errors, touched, dirty, isValid,
@@ -38,7 +48,7 @@ const MovieForm = ({
   } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: onSubmitRef.current,
+    onSubmit,
   });
 
   // React.useEffect(() => {
@@ -78,27 +88,26 @@ const MovieForm = ({
           fullWidth
           select
           variant="filled"
-          value={values.id}
+          value={values.category}
           onChange={handleChange}
           onBlur={handleBlur}
           error={touched.category && Boolean(errors.category)}
           helperText={touched.category && errors.category}
         >
-          {categories.map(({ id, title: categoryTitle }) => (
-            <MenuItem key={id} value={id}>{categoryTitle}</MenuItem>
+          {categories.map(({ id, title: category }) => (
+            <MenuItem key={id} value={id}>{category}</MenuItem>
           ))}
         </TextField>
         <TextField
-          name="price"
-          label="Price €"
-          type="price"
+          name="date"
+          label="Release Year"
           fullWidth
           variant="filled"
-          value={values.price}
+          value={values.date}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={touched.price && Boolean(errors.price)}
-          helperText={touched.price && errors.price}
+          error={touched.date && Boolean(errors.date)}
+          helperText={touched.date && errors.date}
         />
         <TextField
           name="img"

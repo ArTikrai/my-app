@@ -20,7 +20,7 @@ const SwiperMovie = ({
   <Swiper
     style={{
       height: '100%',
-      paddingBottom: 10,
+      paddingBottom: 15,
       paddingInline: 10,
     }}
     modules={[Navigation, EffectFade]}
@@ -44,7 +44,7 @@ const SwiperMovie = ({
       img,
       category,
       description,
-      price,
+      date,
     }) => (
       <SwiperSlide key={id} style={{ height: 'auto' }}>
         <MovieCard
@@ -53,7 +53,7 @@ const SwiperMovie = ({
           description={description}
           img={img}
           category={category.title}
-          price={price}
+          date={date}
           onDelete={() => removeMovieCard(id)}
           onEdit={() => editMovieCard(id)}
         />

@@ -7,16 +7,16 @@ import {
   Button,
   IconButton,
 } from '@mui/material';
-import { Image, TypographyLimited } from 'components';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import useAuth from 'hooks/useAuth';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { createAuthWatchlistThunkAction } from 'store/auth/auth-actions';
+import { Background } from './index';
 
 const MovieCardById = ({
   movie,
-  onEdit,
-  onDelete,
 }) => {
   const [liked, setLiked] = React.useState(false);
 
@@ -29,65 +29,76 @@ const MovieCardById = ({
   };
 
   return (
-    <Card sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'relative',
-      maxHeight: '745px',
-      flexGrow: 1,
-      maxWidth: '550px',
-      margin: 'auto',
-      mb: 20,
-    }}
-    >
-      <Box sx={{ position: 'relative', width: '100%', pt: '95%' }}>
-        <Image src={movie.img} sx={{ position: 'absolute', top: 0, left: 0 }} />
-        <IconButton
-          sx={{
-            position: 'absolute',
-            top: 5,
-            right: 5,
-            color: 'red',
-          }}
-          onClick={() => createWatchlistMovie(movie.id)}
-        >
-          { liked ? (
-            <FavoriteIcon sx={{ width: 37, height: 37 }} />
-          ) : (
-            <FavoriteBorderIcon sx={{ width: 37, height: 37 }} />
-          )}
-        </IconButton>
-      </Box>
-
-      <CardContent sx={{ p: 2, flexGrow: 1 }}>
-
-        <Box sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+    <Card>
+      <Background key={movie.id} component="img" sx={{ mt: '64px' }} src={movie.bigImg} />
+      <IconButton
+        sx={{
+          position: 'absolute',
+          top: 85,
+          right: 20,
+          color: 'red',
+          zIndex: 10,
         }}
+        onClick={() => createWatchlistMovie(movie.id)}
+      >
+        { liked ? (
+          <FavoriteIcon sx={{ width: 45, height: 45 }} />
+        ) : (
+          <FavoriteBorderIcon sx={{ width: 45, height: 45 }} />
+        )}
+      </IconButton>
+      <Box
+        sx={{
+          width: '350px',
+          position: 'absolute',
+          color: 'white',
+          top: '30%',
+          left: '10%',
+          zIndex: 5,
+        }}
+      >
+        <CardContent sx={{ p: 1, flexGrow: 1 }}>
+          <Typography variant="h3" component="div" sx={{ mb: 4 }}>{movie.title}</Typography>
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            textAlign: 'center',
+
+          }}
+          >
+            <Typography variant="h5" component="div" sx={{ mb: 3 }}>{movie.category.title}</Typography>
+            <Typography variant="subtitle" component="div">{movie.date}</Typography>
+          </Box>
+          <Typography variant="subtitle1" color="inherit">{movie.description}</Typography>
+        </CardContent>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            pt: '20px',
+            justifyItems: 'center',
+          }}
         >
-          <Typography variant="h5" component="div">{movie.title}</Typography>
-          <Typography variant="h6" component="div" color="primary.main">{`${movie.price} €`}</Typography>
+          <Button
+            variant="contained"
+            size="small"
+            sx={{ display: 'inline-flex', gap: '7px', justifyItems: 'center' }}
+            // onClick={onEdit}
+          >
+            <PlayCircleIcon />
+            Watch trailer
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            // onClick={onDelete}
+            sx={{ display: 'inline-flex', gap: '7px', justifyItems: 'center' }}
+          >
+            <PlayArrowIcon />
+            Play
+          </Button>
         </Box>
-        <Typography variant="subtitle" component="div" sx={{ mb: 2 }}>{movie.category.title}</Typography>
-        <TypographyLimited variant="body2" color="text.secondary">{movie.description}</TypographyLimited>
-      </CardContent>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button
-          size="small"
-          onClick={onEdit}
-          sx={{ color: 'warning.main' }}
-        >
-          Edit
-        </Button>
-        <Button
-          size="small"
-          onClick={onDelete}
-          sx={{ color: 'error.main' }}
-        >
-          Delete
-        </Button>
       </Box>
     </Card>
   );

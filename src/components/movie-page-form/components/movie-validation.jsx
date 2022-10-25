@@ -5,9 +5,15 @@ const validationSchema = yup.object({
     .required('Required'),
   category: yup.string()
     .required('Required'),
-  price: yup.number().typeError('Cup.price must be a number')
+  date: yup.number().typeError('Movie.date must be a number')
     .required('Required'),
   img: yup.string()
+    .required('Required'),
+  bigImg: yup.string()
+    .required('Required'),
+  trailer: yup.string()
+    .required('Required'),
+  play: yup.string()
     .required('Required'),
   description: yup.string()
     .required('Required'),
