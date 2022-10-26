@@ -8,7 +8,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import HomeMovieCard from './movie-card';
 
-const HomeSwiper = ({ homeMovies, homeMovieId, foundHomeMovie }) => {
+const HomeSwiper = ({
+  homeMovies,
+  homeMovieId,
+  foundHomeMovie,
+  editHomeMovieCard,
+  removeHomeMovieCard,
+}) => {
   const [homeSwiper, setHomeSwiper] = React.useState(true);
   console.log(homeSwiper);
 
@@ -43,6 +49,8 @@ const HomeSwiper = ({ homeMovies, homeMovieId, foundHomeMovie }) => {
               homeMovies={homeMovies}
               homeMovieId={homeMovieId}
               foundHomeMovie={foundHomeMovie}
+              editHomeMovieCard={editHomeMovieCard}
+              removeHomeMovieCard={removeHomeMovieCard}
               setHomeSwiper={setHomeSwiper}
             />
           </SwiperSlide>

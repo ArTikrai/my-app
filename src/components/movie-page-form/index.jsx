@@ -17,17 +17,19 @@ const MoviePageForm = () => {
   const createMovieCard = async (movieProps) => {
     await MovieService.create(movieProps);
     dispatch(modalState(false));
+    window.location.reload();
   };
 
   const updateMovieCard = async (movieProps) => {
     await MovieService.update(movieState.beingEdit.id, movieProps);
     dispatch(modalState(false));
     dispatch(beingUpdateState(null));
+    window.location.reload();
   };
 
   return (
     <Box sx={{
-      gap: { xs: 4, xxl: 0 },
+      gap: { xs: 2, xxl: 0 },
     }}
     >
       <Modal open={movieState.modalOpen} onClose={closeModal}>

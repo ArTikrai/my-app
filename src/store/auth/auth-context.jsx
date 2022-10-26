@@ -16,6 +16,7 @@ const initialAuthState = {
   message: null,
   successRegister: false,
   modalOpen: false,
+  homeModalOpen: false,
   beingEdit: null,
   watchMoviesChange: false,
   homeTrailerModal: false,

@@ -17,8 +17,8 @@ const PageRoutes = () => (
   <Routes>
     <Route path="/" element={<MainLayout />}>
       <Route index element={<HomePage />} />
-      <Route path="movies" element={<MoviesPage />} />
-      <Route path="movie/:movieId" element={<MoviePage />} />
+      <Route path="movies" element={<RequireAuth><MoviesPage /></RequireAuth>} />
+      <Route path="movie/:movieId" element={<RequireAuth><MoviePage /></RequireAuth>} />
       <Route path="watchlist" element={<RequireAuth><WatchlistPage /></RequireAuth>} />
 
       <Route

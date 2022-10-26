@@ -13,6 +13,7 @@ import {
   AUTH_CLEAR_MESSAGE,
   RESET_REGISTER_STATE,
   MOVIE_MODAL_STATE,
+  HOME_MODAL_STATE,
   MOVIE_BEING_UPDATE_STATE,
   WATCH_MOVIES_CHANGE,
   HOME_TRAILER_MODAL,
@@ -26,6 +27,10 @@ export const registerSuccess = (action) => ({ type: RESET_REGISTER_STATE, payloa
 
 export const modalState = (action) => ({
   type: MOVIE_MODAL_STATE,
+  payload: action,
+});
+export const homeModalState = (action) => ({
+  type: HOME_MODAL_STATE,
   payload: action,
 });
 

@@ -11,7 +11,7 @@ import {
   Divider,
 } from '@mui/material';
 import useAuth from 'hooks/useAuth';
-import { authLogoutAction, modalState } from 'store/auth/auth-actions';
+import { authLogoutAction, modalState, homeModalState } from 'store/auth/auth-actions';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MoviePageForm from 'components/movie-page-form';
@@ -20,6 +20,7 @@ import * as Nav from './components/index';
 
 const Navbar = () => {
   const { loggedIn, user, dispatch } = useAuth();
+  const adminOn = user?.role === 'ADMIN';
   const UserMenuIconRef = React.useRef(null);
   const [userMenuOpen, setUserMenuOpen] = React.useState(false);
 
@@ -52,10 +53,20 @@ const Navbar = () => {
                   <Typography>{user.fullname}</Typography>
                 </MenuItem>
                 <Divider sx={{ my: 1 }} />
-                <MenuItem>
-                  <Typography>Create HomePage Movie</Typography>
-                </MenuItem>
+                {adminOn && (
+                  <MenuItem
+                    onClick={() => {
+                      dispatch(homeModalState(true));
+                      setUserMenuOpen(false);
+                    }}
+                  >
+                    <Typography>Create HomePage Movie</Typography>
+                  </MenuItem>
+                )}
+                {adminOn && (
                 <Divider sx={{ my: 1 }} />
+                )}
+                {adminOn && (
                 <MenuItem
                   onClick={() => {
                     dispatch(modalState(true));
@@ -64,7 +75,10 @@ const Navbar = () => {
                 >
                   <Typography>Create MoviesPage Movie</Typography>
                 </MenuItem>
+                )}
+                {adminOn && (
                 <Divider sx={{ my: 1 }} />
+                )}
                 <MenuItem
                   onClick={() => {
                     dispatch(authLogoutAction);

@@ -35,7 +35,9 @@ const MovieCard = ({
     deleteWatchlistMovies,
   } = useWatchlist();
   const [liked, setLiked] = React.useState(false);
-  const { dispatch } = useAuth();
+  const { dispatch, user } = useAuth();
+
+  const adminOn = user?.role === 'ADMIN';
 
   const currentMovie = getWatchlistMovie(id);
 
@@ -102,6 +104,7 @@ const MovieCard = ({
         <Typography variant="subtitle" component="div" sx={{ mb: 2 }}>{category.title}</Typography>
         <TypographyLimited variant="body2" color="text.secondary">{description}</TypographyLimited>
       </CardContent>
+      {adminOn && (
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button
           size="small"
@@ -121,6 +124,7 @@ const MovieCard = ({
           Delete
         </Button>
       </Box>
+      )}
       <Box>
         <Button
           size="small"

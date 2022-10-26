@@ -16,14 +16,15 @@ const MoviesPage = () => {
     dispatch(beingUpdateState(foundMovies));
   };
 
-  const removeMovieCard = async (id) => {
-    await MovieService.remove(id);
-  };
-
   const handleFetchedMovies = React.useCallback(async () => {
     const [fetchedMovies] = await Promise.all([MovieService.fetchAll(searchParams.toString())]);
     setMovies(fetchedMovies);
   }, [searchParams]);
+
+  const removeMovieCard = async (id) => {
+    await MovieService.remove(id);
+    await handleFetchedMovies();
+  };
 
   const fantasyMovies = movies.filter((arr) => arr.category.title === 'Fantasy');
   const actionMovies = movies.filter((arr) => arr.category.title === 'Action');

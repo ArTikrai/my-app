@@ -10,7 +10,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { TypographyLimited } from 'components';
 import HomeTrailer from 'components/trailer';
 import useAuth from 'hooks/useAuth';
-import { homeTrailerState } from 'store/auth/auth-actions';
+import { homeTrailerState, homeModalState } from 'store/auth/auth-actions';
 import { Background } from '.';
 
 const HomeMovieCard = ({
@@ -21,8 +21,35 @@ const HomeMovieCard = ({
   homeMovieId,
   foundHomeMovie,
   setHomeSwiper,
+  removeHomeMovieCard,
+  editHomeMovieCard,
 }) => {
-  const { dispatch } = useAuth();
+  const { dispatch, user } = useAuth();
+  // const [adminOn, setAdminOn] = useState(false);
+
+  // const admin = () => {
+  //   if (user.role === 'ADMIN') {
+  //     setAdminOn(true);
+  //   }
+  // };
+
+  // if (user?.role === 'ADMIN') {
+  //   return setAdminOn(true);
+  // }
+
+  const adminOn = user?.role === 'ADMIN';
+
+  // admin();
+  // const adminOn = () => {
+  //   if (user.role === 'ADMIN');
+
+  //   return true;
+  // };
+  console.log('admin', adminOn);
+
+  // React.useEffect(() => {
+  //   setAdminOn();
+  // }, []);
 
   return (
     <Card>
@@ -56,6 +83,32 @@ const HomeMovieCard = ({
           Watch Trailer
         </Button>
         <HomeTrailer setHomeSwiper={setHomeSwiper} trailer={foundHomeMovie.trailer} />
+        {adminOn && (
+        <Box sx={{ mt: '35px', display: 'flex', justifyContent: 'space-between' }}>
+          <Button
+            size="small"
+            variant="contained"
+            onClick={() => {
+              dispatch(homeModalState(true));
+              editHomeMovieCard(id);
+            }}
+            // sx={{ color: 'warning.main' }}
+            sx={{ color: 'white' }}
+          >
+            Edit
+          </Button>
+          <Button
+            size="small"
+            // color="white"
+            variant="contained"
+            onClick={() => removeHomeMovieCard(id)}
+            // sx={{ color: 'error.main' }}
+            sx={{ color: 'white' }}
+          >
+            Delete
+          </Button>
+        </Box>
+        )}
       </Box>
     </Card>
   );

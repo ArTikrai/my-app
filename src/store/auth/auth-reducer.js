@@ -9,6 +9,7 @@ import {
   AUTH_CLEAR_MESSAGE,
   RESET_REGISTER_STATE,
   MOVIE_MODAL_STATE,
+  HOME_MODAL_STATE,
   MOVIE_BEING_UPDATE_STATE,
   WATCH_MOVIES_CHANGE,
   HOME_TRAILER_MODAL,
@@ -81,6 +82,10 @@ const authReducer = (currentState, action) => {
     }
     case MOVIE_MODAL_STATE: {
       newState.modalOpen = action.payload;
+      break;
+    }
+    case HOME_MODAL_STATE: {
+      newState.homeModalOpen = action.payload;
       break;
     }
     case MOVIE_BEING_UPDATE_STATE: {
