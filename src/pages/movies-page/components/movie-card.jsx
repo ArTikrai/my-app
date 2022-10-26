@@ -29,7 +29,7 @@ const MovieCard = ({
 }) => {
   const navigate = useNavigate();
   const {
-    movieInWatchlist,
+    watchlistMovies: currentWatchcList,
     getWatchlistMovie,
     addWatchlistMovies,
     deleteWatchlistMovies,
@@ -40,31 +40,28 @@ const MovieCard = ({
   const adminOn = user?.role === 'ADMIN';
 
   const currentMovie = getWatchlistMovie(id);
-
-  useEffect(() => {
-    console.log('MOvies in watchlist: ', movieInWatchlist);
-    if (movieInWatchlist) {
-      movieInWatchlist?.forEach((element) => {
-        if (element === id) {
-          setLiked(true);
-        }
-      });
-    }
-  }, [id, movieInWatchlist]);
+  console.log('curren movie with getwacht', currentMovie);
 
   const handleWatchlistMovies = () => {
     if (currentMovie?.id !== id) {
       addWatchlistMovies(id);
-      setLiked(true);
+      // setLiked(true);
     } else if (currentMovie?.id === id) {
       deleteWatchlistMovies(id);
       setLiked(false);
     }
   };
 
-  React.useEffect(() => {
-    setLiked();
-  }, []);
+  useEffect(() => {
+    console.log('MOvies in watchlist: ', currentWatchcList);
+    if (currentWatchcList) {
+      currentWatchcList?.forEach((element) => {
+        if (element.id === id) {
+          setLiked(true);
+        }
+      });
+    }
+  }, [currentWatchcList, id]);
 
   return (
     <Card sx={{

@@ -8,6 +8,8 @@ export const WatchlistProvider = ({ children, userID }) => {
   const [watchlistMovies, setWatchlistMovies] = useLocalStorage('watchlistMovies', []);
   const currentWatchcList = useMemo(() => watchlistMovies[userID] || [], [userID, watchlistMovies]);
 
+  console.log('context watchlistMovies', watchlistMovies);
+
   const watchlistContextValue = React.useMemo(() => ({
     watchlistMovies: currentWatchcList,
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import MovieService from 'services/movie-service';
 import { Box, Alert } from '@mui/material';

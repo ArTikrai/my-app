@@ -20,6 +20,7 @@ const WatchlistPage = () => {
     // deleteWatchlistMovies,
   } = useWatchlist();
   const [watchlistMovies, setWatchlistMovies] = React.useState([]);
+  console.log('watchlist movies', watchlistMovies);
 
   React.useEffect(() => {
     (async () => {

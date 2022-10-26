@@ -7,12 +7,11 @@ import {
   Button,
   IconButton,
 } from '@mui/material';
+import useWatchlist from 'hooks/useWatchlist';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import useAuth from 'hooks/useAuth';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { createAuthWatchlistThunkAction } from 'store/auth/auth-actions';
 import { Background } from './index';
 
 const MovieCardById = ({
@@ -20,13 +19,34 @@ const MovieCardById = ({
 }) => {
   const [liked, setLiked] = React.useState(false);
 
-  const { dispatch } = useAuth();
+  const {
+    watchlistMovies: currentWatchcList,
+    getWatchlistMovie,
+    addWatchlistMovies,
+    deleteWatchlistMovies,
+  } = useWatchlist();
 
-  const createWatchlistMovie = async (userProps) => {
-    await dispatch(createAuthWatchlistThunkAction(userProps));
-    setLiked(true);
-    // await fetchAllMovies();
+  const currentMovie = getWatchlistMovie(movie.id);
+
+  const handleWatchlistMovies = () => {
+    if (currentMovie?.id !== movie.id) {
+      addWatchlistMovies(movie.id);
+    } else if (currentMovie?.id === movie.id) {
+      deleteWatchlistMovies(movie.id);
+      setLiked(false);
+    }
   };
+
+  React.useEffect(() => {
+    console.log('MOvies in watchlist: ', currentWatchcList);
+    if (currentWatchcList) {
+      currentWatchcList?.forEach((element) => {
+        if (element.id === movie.id) {
+          setLiked(true);
+        }
+      });
+    }
+  }, [currentWatchcList, movie.id]);
 
   return (
     <Card>
@@ -39,7 +59,7 @@ const MovieCardById = ({
           color: 'red',
           zIndex: 10,
         }}
-        onClick={() => createWatchlistMovie(movie.id)}
+        onClick={() => handleWatchlistMovies()}
       >
         { liked ? (
           <FavoriteIcon sx={{ width: 45, height: 45 }} />
