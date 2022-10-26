@@ -10,14 +10,18 @@ import {
 import useWatchlist from 'hooks/useWatchlist';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { homeTrailerState } from 'store/auth/auth-actions';
+import HomeTrailer from 'components/trailer';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import useAuth from 'hooks/useAuth';
 import { Background } from './index';
 
 const MovieCardById = ({
   movie,
 }) => {
   const [liked, setLiked] = React.useState(false);
+  const { dispatch } = useAuth();
 
   const {
     watchlistMovies: currentWatchcList,
@@ -87,10 +91,10 @@ const MovieCardById = ({
 
           }}
           >
-            <Typography variant="h5" component="div" sx={{ mb: 3 }}>{movie.category.title}</Typography>
-            <Typography variant="subtitle" component="div">{movie.date}</Typography>
+            <Typography variant="h5" component="div" sx={{ mb: 3 }}>{movie.category?.title}</Typography>
+            <Typography variant="subtitle" component="div">{movie?.date}</Typography>
           </Box>
-          <Typography variant="subtitle1" color="inherit">{movie.description}</Typography>
+          <Typography variant="subtitle1" color="inherit">{movie?.description}</Typography>
         </CardContent>
         <Box
           sx={{
@@ -105,15 +109,22 @@ const MovieCardById = ({
             size="small"
             sx={{ display: 'inline-flex', gap: '7px', justifyItems: 'center' }}
             // onClick={onEdit}
+            onClick={() => {
+              dispatch(homeTrailerState(true));
+            }}
           >
             <PlayCircleIcon />
             Watch trailer
           </Button>
+          <HomeTrailer trailer={movie?.trailer} />
           <Button
             variant="contained"
             size="small"
             // onClick={onDelete}
             sx={{ display: 'inline-flex', gap: '7px', justifyItems: 'center' }}
+            onClick={() => {
+              dispatch(homeTrailerState(true));
+            }}
           >
             <PlayArrowIcon />
             Play

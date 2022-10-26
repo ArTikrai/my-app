@@ -8,7 +8,15 @@ import { Background } from './components';
 const MoviePage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = React.useState(null);
+  // const [foundMoviePage, setFoundMoviePage] = React.useState([]);
   const [errorMsg, setErrorMsg] = React.useState(null);
+
+  console.log('movie', movie);
+
+  // const MoviePageId = (id) => {
+  //   const foundMovie = movie?.find((c) => c.id === id);
+  //   setFoundMoviePage(foundMovie);
+  // };
 
   React.useEffect(() => {
     (async () => {
@@ -29,7 +37,8 @@ const MoviePage = () => {
     >
       <Background />
       {errorMsg && (<Alert severity="error">{errorMsg}</Alert>)}
-      {movie && <MovieCardById movie={movie} />}
+      {movie && (
+      <MovieCardById movie={movie} />)}
     </Box>
   );
 };

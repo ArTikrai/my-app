@@ -25,31 +25,8 @@ const HomeMovieCard = ({
   editHomeMovieCard,
 }) => {
   const { dispatch, user } = useAuth();
-  // const [adminOn, setAdminOn] = useState(false);
-
-  // const admin = () => {
-  //   if (user.role === 'ADMIN') {
-  //     setAdminOn(true);
-  //   }
-  // };
-
-  // if (user?.role === 'ADMIN') {
-  //   return setAdminOn(true);
-  // }
 
   const adminOn = user?.role === 'ADMIN';
-
-  // admin();
-  // const adminOn = () => {
-  //   if (user.role === 'ADMIN');
-
-  //   return true;
-  // };
-  console.log('admin', adminOn);
-
-  // React.useEffect(() => {
-  //   setAdminOn();
-  // }, []);
 
   return (
     <Card>

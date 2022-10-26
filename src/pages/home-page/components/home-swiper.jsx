@@ -16,7 +16,6 @@ const HomeSwiper = ({
   removeHomeMovieCard,
 }) => {
   const [homeSwiper, setHomeSwiper] = React.useState(true);
-  console.log(homeSwiper);
 
   return (
     <Box>
