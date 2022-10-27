@@ -6,7 +6,6 @@ import {
 import AuthForm from 'components/auth-form';
 import { useFormik } from 'formik';
 import { authClearErrorsAction, createRegisterThunkAction, registerSuccess } from 'store/auth/auth-actions';
-// import { useSearchParams } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 import validationSchema from './components/reg-validation';
 

@@ -70,7 +70,6 @@ const HomeMovieCard = ({
               dispatch(homeModalState(true));
               editHomeMovieCard(id);
             }}
-            // sx={{ color: 'warning.main' }}
             sx={{ color: 'white' }}
           >
             Edit
@@ -80,7 +79,6 @@ const HomeMovieCard = ({
             // color="white"
             variant="contained"
             onClick={() => removeHomeMovieCard(id)}
-            // sx={{ color: 'error.main' }}
             sx={{ color: 'white' }}
           >
             Delete

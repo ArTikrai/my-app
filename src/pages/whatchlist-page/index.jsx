@@ -7,7 +7,6 @@ import useWatchlist from 'hooks/useWatchlist';
 import WatchlistCard from './components/watchlist-card';
 
 const getFormattedWatchlistMoves = async (watchlistMoviesData) => {
-  console.log('Watchlist: ', watchlistMoviesData);
   const idArr = watchlistMoviesData.map((watchlistMovie) => watchlistMovie.id);
   const fetchedWatchlistMovies = await MovieService.fetchByIdArr(idArr);
 
@@ -17,10 +16,8 @@ const getFormattedWatchlistMoves = async (watchlistMoviesData) => {
 const WatchlistPage = () => {
   const {
     watchlistMovies: watchlistMoviesData,
-    // deleteWatchlistMovies,
   } = useWatchlist();
   const [watchlistMovies, setWatchlistMovies] = React.useState([]);
-  console.log('watchlist movies', watchlistMovies);
 
   React.useEffect(() => {
     (async () => {
