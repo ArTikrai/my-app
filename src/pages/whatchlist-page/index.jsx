@@ -48,7 +48,7 @@ const WatchlistPage = () => {
         gap: { xs: 4, xxl: 0 },
         py: 2,
         px: 2,
-        mb: 25,
+        mb: { xs: '50px', sm: '100px' },
       }}
       >
         {watchlistMovies.length > 0 ? (

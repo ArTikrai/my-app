@@ -15,7 +15,7 @@ export const Link = styled(NavLink, {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: spacing(0, 2),
+    padding: spacing(0, 1),
     textDecoration: 'none',
     color: 'black',
   };

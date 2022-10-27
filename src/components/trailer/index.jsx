@@ -26,6 +26,7 @@ const HomeTrailer = ({ trailer, setHomeSwiper }) => {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           zIndex: 400,
+          width: { xs: '350px', sm: '550px', lg: '853px' },
         }}
         >
           <YoutubeEmbed embedId={trailer} />

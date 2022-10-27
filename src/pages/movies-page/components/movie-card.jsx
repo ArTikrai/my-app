@@ -15,7 +15,6 @@ import useAuth from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { modalState } from 'store/auth/auth-actions';
 import { useEffect } from 'react';
-// import WatchlistService from '../../../services/watchlist-service';
 
 const MovieCard = ({
   id,
@@ -40,12 +39,10 @@ const MovieCard = ({
   const adminOn = user?.role === 'ADMIN';
 
   const currentMovie = getWatchlistMovie(id);
-  console.log('curren movie with getwacht', currentMovie);
 
   const handleWatchlistMovies = () => {
     if (currentMovie?.id !== id) {
       addWatchlistMovies(id);
-      // setLiked(true);
     } else if (currentMovie?.id === id) {
       deleteWatchlistMovies(id);
       setLiked(false);
@@ -53,7 +50,6 @@ const MovieCard = ({
   };
 
   useEffect(() => {
-    console.log('MOvies in watchlist: ', currentWatchcList);
     if (currentWatchcList) {
       currentWatchcList?.forEach((element) => {
         if (element.id === id) {

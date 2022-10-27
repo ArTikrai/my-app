@@ -42,7 +42,6 @@ const MovieCardById = ({
   };
 
   React.useEffect(() => {
-    console.log('MOvies in watchlist: ', currentWatchcList);
     if (currentWatchcList) {
       currentWatchcList?.forEach((element) => {
         if (element.id === movie.id) {
@@ -54,7 +53,7 @@ const MovieCardById = ({
 
   return (
     <Card>
-      <Background key={movie.id} component="img" sx={{ mt: '64px' }} src={movie.bigImg} />
+      <Background key={movie.id} component="img" sx={{ mt: { xs: '54px', sm: '64px' } }} src={movie.bigImg} />
       <IconButton
         sx={{
           position: 'absolute',
@@ -77,8 +76,9 @@ const MovieCardById = ({
           position: 'absolute',
           color: 'white',
           top: '30%',
-          left: '10%',
+          left: { xs: '0%', sm: '10%' },
           zIndex: 5,
+          px: 2,
         }}
       >
         <CardContent sx={{ p: 1, flexGrow: 1 }}>
@@ -93,13 +93,13 @@ const MovieCardById = ({
             <Typography variant="h5" component="div" sx={{ mb: 3 }}>{movie.category?.title}</Typography>
             <Typography variant="subtitle" component="div">{movie?.date}</Typography>
           </Box>
-          <Typography variant="subtitle1" color="inherit">{movie?.description}</Typography>
+          <Typography variant="subtitle1" color="inherit" sx={{ pt: { xs: '20px', sm: '15px' } }}>{movie?.description}</Typography>
         </CardContent>
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            pt: '20px',
+            pt: { xs: '35px', sm: '20px' },
             alignItems: 'center',
           }}
         >

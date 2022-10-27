@@ -8,15 +8,7 @@ import { Background } from './components';
 const MoviePage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = React.useState(null);
-  // const [foundMoviePage, setFoundMoviePage] = React.useState([]);
   const [errorMsg, setErrorMsg] = React.useState(null);
-
-  console.log('movie', movie);
-
-  // const MoviePageId = (id) => {
-  //   const foundMovie = movie?.find((c) => c.id === id);
-  //   setFoundMoviePage(foundMovie);
-  // };
 
   React.useEffect(() => {
     (async () => {
@@ -31,7 +23,7 @@ const MoviePage = () => {
 
   return (
     <Box sx={{
-      mx: 4,
+      mx: 3,
       height: '100vh',
     }}
     >

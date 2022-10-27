@@ -87,7 +87,7 @@ const NavbarDrawer = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 7 }}
+            sx={{ mr: { xs: '2px', sm: 7 } }}
           >
             <MenuIcon />
           </IconButton>

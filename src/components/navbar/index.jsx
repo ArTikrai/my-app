@@ -44,7 +44,7 @@ const Navbar = () => {
                 sx={{ color: 'white' }}
                 onClick={() => navigate('/movies')}
               >
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize: { xs: '18px', sm: '22px' } }}>
                   MovieBox
                 </Typography>
               </Button>
@@ -110,11 +110,11 @@ const Navbar = () => {
             ) : (
               <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Nav.Link to="/auth/login">
-                  <Button sx={{ color: 'white' }} color="inherit">Login</Button>
+                  <Button sx={{ fontSize: { xs: '13px', sm: '14px' }, color: 'white' }} color="inherit">Login</Button>
                 </Nav.Link>
                 <Typography>/</Typography>
                 <Nav.Link to="/auth/register">
-                  <Button sx={{ fontSize: '15px', color: 'white' }} color="inherit">Register</Button>
+                  <Button sx={{ fontSize: { xs: '14px', sm: '15px' }, color: 'white' }} color="inherit">Register</Button>
                 </Nav.Link>
               </Box>
             )}

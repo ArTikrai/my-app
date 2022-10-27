@@ -36,15 +36,16 @@ const HomeMovieCard = ({
           width: '350px',
           color: 'white',
           position: 'absolute',
-          top: '30%',
-          left: '10%',
+          top: { xs: '20%', sm: '30%' },
+          left: { xs: '0%', sm: '10%' },
           zIndex: 5,
+          px: 2,
         }}
       >
         <Typography variant="h3">
           { title }
         </Typography>
-        <TypographyLimited sx={{ my: '20px' }}>
+        <TypographyLimited sx={{ mt: { xs: '30px', sm: '20px' }, mb: { xs: '155px', sm: '20px' } }}>
           { description }
         </TypographyLimited>
         <Button
@@ -61,7 +62,7 @@ const HomeMovieCard = ({
         </Button>
         <HomeTrailer setHomeSwiper={setHomeSwiper} trailer={foundHomeMovie.trailer} />
         {adminOn && (
-        <Box sx={{ mt: '35px', display: 'flex', justifyContent: 'space-between' }}>
+        <Box sx={{ mt: { xs: '45px', sm: '35px' }, display: 'flex', justifyContent: 'space-between' }}>
           <Button
             size="small"
             variant="contained"

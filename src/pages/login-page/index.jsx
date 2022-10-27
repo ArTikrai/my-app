@@ -43,7 +43,7 @@ const LoginPage = () => {
         </Alert>
       )}
       <AuthForm
-        sx={{ mt: '100px' }}
+        sx={{ mt: '100px', px: 1 }}
         title="Login"
         onSubmit={handleSubmit}
         disabled={!dirty || !isValid}

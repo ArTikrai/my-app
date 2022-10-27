@@ -59,7 +59,7 @@ const MovieForm = ({
   React.useEffect(() => { fetchCategories(); }, []);
 
   return (
-    <Paper component="form" sx={{ p: 3, minWidth: { xs: '250px', sm: '400px' } }} onSubmit={handleSubmit} disabled={!dirty || !isValid}>
+    <Paper component="form" sx={{ p: 3, minWidth: { xs: '300px', sm: '400px' } }} onSubmit={handleSubmit} disabled={!dirty || !isValid}>
       <Typography variant="h4" sx={{ textAlign: 'center', pb: 2 }}>{formTitle}</Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <TextField

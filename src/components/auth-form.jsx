@@ -18,7 +18,7 @@ const AuthForm = ({
     elevation={3}
     sx={{
       p: 4,
-      width: 400,
+      width: { xs: '300px', sm: 400 },
       my: 4,
     }}
   >
@@ -28,6 +28,7 @@ const AuthForm = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        px: 1,
         gap: 4,
       }}
       onSubmit={onSubmit}

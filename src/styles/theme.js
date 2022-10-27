@@ -32,7 +32,7 @@ const mixinTheme = createTheme(baseTheme, {
     navbar: {
       display: 'flex',
       justifyContent: 'space-between',
-      height: '64px',
+      height: '54px',
       padding: baseTheme.spacing(0, 2),
     },
   },
