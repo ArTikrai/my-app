@@ -106,12 +106,6 @@ const authReducer = (currentState, action) => {
     }
   }
 
-  console.log(
-    `%c${action.type}: %c${JSON.stringify(newState, null, 4)}`,
-    'color: blue',
-    'font-weight: 700',
-  );
-
   return newState;
 };
 
