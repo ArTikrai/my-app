@@ -75,7 +75,7 @@ const MovieCardById = ({
           width: '350px',
           position: 'absolute',
           color: 'white',
-          top: '30%',
+          top: { xs: '25%', sm: '30%' },
           left: { xs: '0%', sm: '10%' },
           zIndex: 5,
           px: 2,

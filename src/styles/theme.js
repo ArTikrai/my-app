@@ -46,7 +46,7 @@ const lightTheme = createTheme(mixinTheme, {
       default: '#fafafa',
     },
     primary: {
-      ...createColor('#be123c'),
+      ...createColor('#4682B4'),
       contrastText: baseTheme.palette.common.white,
     },
     secondary: createColor('#434343'),

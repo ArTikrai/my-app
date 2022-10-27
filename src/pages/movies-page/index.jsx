@@ -34,12 +34,6 @@ const MoviesPage = () => {
 
   return (
     <>
-      <CategoryTitle style={{ marginTop: 5 }} categoryTitle="Fantasy" />
-      <SwiperMovie
-        filteredMovies={fantasyMovies}
-        editMovieCard={editMovieCard}
-        removeMovieCard={removeMovieCard}
-      />
       <CategoryTitle categoryTitle="Action" />
       <SwiperMovie
         filteredMovies={actionMovies}
@@ -49,6 +43,12 @@ const MoviesPage = () => {
       <CategoryTitle categoryTitle="Comedy" />
       <SwiperMovie
         filteredMovies={comedyMovies}
+        editMovieCard={editMovieCard}
+        removeMovieCard={removeMovieCard}
+      />
+      <CategoryTitle style={{ marginTop: 5 }} categoryTitle="Fantasy" />
+      <SwiperMovie
+        filteredMovies={fantasyMovies}
         editMovieCard={editMovieCard}
         removeMovieCard={removeMovieCard}
       />
