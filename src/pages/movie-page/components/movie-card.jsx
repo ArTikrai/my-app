@@ -86,7 +86,6 @@ const MovieCardById = ({
           <Box sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center',
             textAlign: 'center',
 
           }}
@@ -101,33 +100,36 @@ const MovieCardById = ({
             display: 'flex',
             justifyContent: 'space-between',
             pt: '20px',
-            justifyItems: 'center',
+            alignItems: 'center',
           }}
         >
           <Button
             variant="contained"
             size="small"
-            sx={{ display: 'inline-flex', gap: '7px', justifyItems: 'center' }}
-            // onClick={onEdit}
+            sx={{
+              display: 'flex',
+              gap: '7px',
+              justifyItems: 'center',
+              alignItems: 'center',
+            }}
             onClick={() => {
               dispatch(homeTrailerState(true));
             }}
           >
             <PlayCircleIcon />
-            Watch trailer
+            <Typography>Watch trailer</Typography>
           </Button>
           <HomeTrailer trailer={movie?.trailer} />
           <Button
             variant="contained"
             size="small"
-            // onClick={onDelete}
             sx={{ display: 'inline-flex', gap: '7px', justifyItems: 'center' }}
             onClick={() => {
               dispatch(homeTrailerState(true));
             }}
           >
             <PlayArrowIcon />
-            Play
+            <Typography>Play</Typography>
           </Button>
         </Box>
       </Box>

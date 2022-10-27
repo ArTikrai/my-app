@@ -16,16 +16,15 @@ const HomeSwiper = ({
   removeHomeMovieCard,
 }) => {
   const [homeSwiper, setHomeSwiper] = React.useState(true);
+  console.log(homeSwiper);
 
   return (
     <Box>
       <Swiper
         modules={[Navigation, Autoplay]}
         navigation
-        autoplay={homeSwiper && ({
-          delay: 7000,
-          disableOnInteraction: false,
-        })}
+        autoplay={{ delay: 7000, disableOnInteraction: false }}
+        enabled={homeSwiper}
         style={{
           height: '100vh',
           width: '100%',

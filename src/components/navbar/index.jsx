@@ -10,6 +10,7 @@ import {
   MenuItem,
   Divider,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 import { authLogoutAction, modalState, homeModalState } from 'store/auth/auth-actions';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -20,6 +21,7 @@ import * as Nav from './components/index';
 
 const Navbar = () => {
   const { loggedIn, user, dispatch } = useAuth();
+  const navigate = useNavigate();
   const adminOn = user?.role === 'ADMIN';
   const UserMenuIconRef = React.useRef(null);
   const [userMenuOpen, setUserMenuOpen] = React.useState(false);
@@ -27,33 +29,48 @@ const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
           <NavbarDrawer />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            MovieBox
-          </Typography>
-          {loggedIn ? (
-            <>
-              <MoviePageForm />
-              <IconButton
-                sx={{ mr: 7, alignSelf: 'center' }}
-                ref={UserMenuIconRef}
-                onClick={() => setUserMenuOpen(!userMenuOpen)}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              alignItems: 'center',
+            }}
+          >
+            <Box>
+              <Button
+                sx={{ color: 'white' }}
+                onClick={() => navigate('/movies')}
               >
-                <AccountCircleIcon sx={{ width: 37, height: 37, color: 'white' }} />
-              </IconButton>
-              <Menu
-                sx={{ mt: '5px' }}
-                id="menu-appbar"
-                anchorEl={UserMenuIconRef.current}
-                open={userMenuOpen}
-                onClose={() => setUserMenuOpen(false)}
-              >
-                <MenuItem>
-                  <Typography>{user.fullname}</Typography>
-                </MenuItem>
-                <Divider sx={{ my: 1 }} />
-                {adminOn && (
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                  MovieBox
+                </Typography>
+              </Button>
+            </Box>
+            {loggedIn ? (
+              <Box>
+                <MoviePageForm />
+                <IconButton
+                  sx={{ mr: 7, alignSelf: 'center' }}
+                  ref={UserMenuIconRef}
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                >
+                  <AccountCircleIcon sx={{ width: 37, height: 37, color: 'white' }} />
+                </IconButton>
+                <Menu
+                  sx={{ mt: '5px' }}
+                  id="menu-appbar"
+                  anchorEl={UserMenuIconRef.current}
+                  open={userMenuOpen}
+                  onClose={() => setUserMenuOpen(false)}
+                >
+                  <MenuItem>
+                    <Typography>{user.fullname}</Typography>
+                  </MenuItem>
+                  <Divider sx={{ my: 1 }} />
+                  {adminOn && (
                   <MenuItem
                     onClick={() => {
                       dispatch(homeModalState(true));
@@ -62,45 +79,46 @@ const Navbar = () => {
                   >
                     <Typography>Create HomePage Movie</Typography>
                   </MenuItem>
-                )}
-                {adminOn && (
-                <Divider sx={{ my: 1 }} />
-                )}
-                {adminOn && (
-                <MenuItem
-                  onClick={() => {
-                    dispatch(modalState(true));
-                    setUserMenuOpen(false);
-                  }}
-                >
-                  <Typography>Create MoviesPage Movie</Typography>
-                </MenuItem>
-                )}
-                {adminOn && (
-                <Divider sx={{ my: 1 }} />
-                )}
-                <MenuItem
-                  onClick={() => {
-                    dispatch(authLogoutAction);
-                    setUserMenuOpen(false);
-                  }}
-                >
-                  <Typography>Logout</Typography>
-                  <LogoutIcon sx={{ ml: '15px' }} />
-                </MenuItem>
-              </Menu>
-            </>
-          ) : (
-            <>
-              <Nav.Link to="/auth/login">
-                <Button sx={{ color: 'white' }} color="inherit">Login</Button>
-              </Nav.Link>
-              <Box>/</Box>
-              <Nav.Link to="/auth/register">
-                <Button sx={{ fontSize: '15px', color: 'white' }} color="inherit">Register</Button>
-              </Nav.Link>
-            </>
-          )}
+                  )}
+                  {adminOn && (
+                  <Divider sx={{ my: 1 }} />
+                  )}
+                  {adminOn && (
+                  <MenuItem
+                    onClick={() => {
+                      dispatch(modalState(true));
+                      setUserMenuOpen(false);
+                    }}
+                  >
+                    <Typography>Create MoviesPage Movie</Typography>
+                  </MenuItem>
+                  )}
+                  {adminOn && (
+                  <Divider sx={{ my: 1 }} />
+                  )}
+                  <MenuItem
+                    onClick={() => {
+                      dispatch(authLogoutAction);
+                      setUserMenuOpen(false);
+                    }}
+                  >
+                    <Typography>Logout</Typography>
+                    <LogoutIcon sx={{ ml: '15px' }} />
+                  </MenuItem>
+                </Menu>
+              </Box>
+            ) : (
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Nav.Link to="/auth/login">
+                  <Button sx={{ color: 'white' }} color="inherit">Login</Button>
+                </Nav.Link>
+                <Typography>/</Typography>
+                <Nav.Link to="/auth/register">
+                  <Button sx={{ fontSize: '15px', color: 'white' }} color="inherit">Register</Button>
+                </Nav.Link>
+              </Box>
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>
